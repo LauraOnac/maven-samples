@@ -40,7 +40,7 @@ public class Calculator {
         try {
             result = arithmeticOperation.execute();
         }catch(NullPointerException e){
-            throw new RuntimeException("Unrecognized arithmeticOperation!");
+            throw new RuntimeException("Unrecognized arithmetic operation!");
         }
 
         return result;
