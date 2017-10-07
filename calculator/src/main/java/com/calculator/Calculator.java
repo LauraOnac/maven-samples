@@ -24,90 +24,67 @@ public class Calculator {
         division = new Division();
     }
 
-    public double compute(String expression) throws CalculatorException{
+    public double compute(String expression){
         return computeSum(expression);
     }
 
     private double computeSum(String expression){
-        List<Double> numbers = new ArrayList<>();
         String[] items = splitExpression(expression, "\\+");
-        int index;
-        for (index = 0; index < items.length; index++){
-            Double number;
-            try
-            {
-                number = Double.parseDouble(items[index]);
-            }
-            catch(NumberFormatException e)
-            {
-                number = computeDifference(items[index]);
-            }
-            numbers.add(number);
-        }
+        List<Double> numbers = getOperands(items, "subtraction");
         return addition.execute(numbers);
     }
 
     private double computeDifference(String expression){
-        List<Double> numbers = new ArrayList<>();
         String[] items = splitExpression(expression, "-");
-        int index;
-        for (index = 0; index < items.length; index++){
-            Double number;
-            try
-            {
-                number = Double.parseDouble(items[index]);
-            }
-            catch(NumberFormatException e)
-            {
-                number = computeProduct(items[index]);
-            }
-            numbers.add(number);
-        }
+        List<Double> numbers = getOperands(items, "multiplication");
         return subtraction.execute(numbers);
     }
 
     private double computeProduct(String expression){
-        List<Double> numbers = new ArrayList<>();
         String[] items = splitExpression(expression, "\\*");
-        int index;
-        for (index = 0; index < items.length; index++){
-            Double number;
-            try
-            {
-                number = Double.parseDouble(items[index]);
-            }
-            catch(NumberFormatException e)
-            {
-                number = computeQuotient(items[index]);
-            }
-            numbers.add(number);
-        }
+        List<Double> numbers = getOperands(items, "division");
         return multiplication.execute(numbers);
     }
 
-    private double computeQuotient(String expression) throws CalculatorException{
-        List<Double> numbers = new ArrayList<>();
+    private double computeQuotient(String expression){
         String[] items = splitExpression(expression, "/");
-        int index;
-        for (index = 0; index < items.length; index++){
-            Double number;
-            try
-            {
-                number = Double.parseDouble(items[index]);
-            }
-            catch(NumberFormatException e)
-            {
-                throw new CalculatorException("Invalid expression!");
-            }
-            numbers.add(number);
-        }
+        List<Double> numbers = getOperands(items, "");
         return division.execute(numbers);
     }
 
-    private String[] splitExpression(String expression, String operator){
+    private String[] splitExpression(String expression, String operator) throws CalculatorException{
         String[] items = expression.split(operator);
         if(items.length == 1 && !items[0].equals(expression))
             throw new CalculatorException("Invalid expression");
         return items;
+    }
+
+    private List<Double> getOperands(String[] items, String higherPriorityOperation) throws CalculatorException{
+        List<Double> numbers = new ArrayList<>();
+        int index;
+        for (index = 0; index < items.length; index++){
+            Double number;
+            try
+            {
+                number = Double.parseDouble(items[index]);
+            }
+            catch(NumberFormatException e) {
+                switch (higherPriorityOperation) {
+                    case "subtraction":
+                        number = computeDifference(items[index]);
+                        break;
+                    case "multiplication":
+                        number = computeProduct(items[index]);
+                        break;
+                    case "division":
+                        number = computeQuotient(items[index]);
+                        break;
+                    default:
+                        throw new CalculatorException("Invalid expression!");
+                }
+            }
+            numbers.add(number);
+        }
+        return numbers;
     }
 }

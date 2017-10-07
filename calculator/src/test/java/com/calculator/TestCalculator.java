@@ -14,9 +14,33 @@ public class TestCalculator {
   }
 
   @Test
-  public void complexExpression(){
-    double result = calculator.compute("1+2*3-12/2");
+  public void simplePlusExpression(){
+    double result = calculator.compute("1+2+3+4");
+    assertTrue(result == 10);
+  }
+
+  @Test
+  public void simpleMinusExpression(){
+    double result = calculator.compute("1-2-3-4");
+    assertTrue(result == -8);
+  }
+
+  @Test
+  public void simpleMultiplyExpression(){
+    double result = calculator.compute("1*2*3*4");
+    assertTrue(result == 24);
+  }
+
+  @Test
+  public void simpleDivideExpression(){
+    double result = calculator.compute("8/4/2/1");
     assertTrue(result == 1);
+  }
+
+  @Test
+  public void complexExpression(){
+    double result = calculator.compute("1+2*3-12/2+1");
+    assertTrue(result == 2);
   }
 
   @Test(expected = CalculatorException.class)
