@@ -19,7 +19,7 @@
 		<jacoco-version>0.7.9</jacoco-version>
 	</properties>
 
-	<!-- common dependencies for all modules -->
+	<!-- common dependencies for calculator modules -->
 	<dependencies>
 		<dependency>
 			<groupId>org.hamcrest</groupId>
