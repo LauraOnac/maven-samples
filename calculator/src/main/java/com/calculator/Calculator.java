@@ -4,6 +4,7 @@ import com.calculator.operations.Addition;
 import com.calculator.operations.Division;
 import com.calculator.operations.Multiplication;
 import com.calculator.operations.Subtraction;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,14 +49,22 @@ public class Calculator {
 
     private double computeQuotient(String expression){
         String[] items = splitExpression(expression, "/");
-        List<Double> numbers = getOperands(items, "");
+        List<Double> numbers = getOperands(items, "none");
         return division.execute(numbers);
     }
 
     private String[] splitExpression(String expression, String operator) throws CalculatorException{
         String[] items = expression.split(operator);
         if(items.length == 1 && !items[0].equals(expression))
-            throw new CalculatorException("Invalid expression");
+            throw new CalculatorException("Invalid expression!");
+        String character = operator;
+        if(operator.equals("\\+"))
+            character = "+";
+        if(operator.equals("\\*"))
+            character = "*";
+        int noOperatorMatches = StringUtils.countMatches(expression, character);
+        if(items.length > 1 && items.length != noOperatorMatches + 1)
+            throw new CalculatorException("Invalid expression!");
         return items;
     }
 

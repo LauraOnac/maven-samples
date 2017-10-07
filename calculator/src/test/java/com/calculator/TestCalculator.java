@@ -54,8 +54,18 @@ public class TestCalculator {
   }
 
   @Test(expected = CalculatorException.class)
-  public void invalidExpression(){
+  public void beginningInvalidExpression(){
+    calculator.compute("+1+2");
+  }
+
+  @Test(expected = CalculatorException.class)
+  public void middleInvalidExpression(){
     calculator.compute("1++2");
+  }
+
+  @Test(expected = CalculatorException.class)
+  public void endingInvalidExpression(){
+    calculator.compute("1+2+");
   }
 
   @Test(expected = CalculatorException.class)
