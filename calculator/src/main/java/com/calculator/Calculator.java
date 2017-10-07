@@ -58,9 +58,9 @@ public class Calculator {
         if(items.length == 1 && !items[0].equals(expression))
             throw new CalculatorException("Invalid expression!");
         String character = operator;
-        if(operator.equals("\\+"))
+        if("\\+".equals(operator))
             character = "+";
-        if(operator.equals("\\*"))
+        if("\\*".equals(operator))
             character = "*";
         int noOperatorMatches = StringUtils.countMatches(expression, character);
         if(items.length > 1 && items.length != noOperatorMatches + 1)
