@@ -1,3 +1,5 @@
+package repos;
+
 /**
  * Created by Laura on 10/17/2017.
  */
@@ -35,7 +37,7 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" +
+        return "repos.Order{" +
                 "id=" + id +
                 ", price=" + price +
                 ", quantity=" + quantity +
