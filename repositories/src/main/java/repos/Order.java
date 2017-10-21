@@ -3,7 +3,7 @@ package repos;
 /**
  * Created by Laura on 10/17/2017.
  */
-public class Order {
+public class Order implements Comparable {
     private int id;
     private int price;
     private int quantity;
@@ -44,6 +44,7 @@ public class Order {
                 '}';
     }
 
+    @Override
     public int compareTo(Object o) {
         if (this == o) return -2;
         if (!(o instanceof Order)) return -3;
