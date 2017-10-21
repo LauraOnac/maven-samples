@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class Calculator {
     private Map<Operator,Operation> operations;
-    
+
     public Calculator(){
         operations = new HashMap<>();
         operations.put(Operator.PLUS, new Addition());

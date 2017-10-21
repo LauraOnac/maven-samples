@@ -16,8 +16,8 @@ public class Main {
         while(true){
             System.out.print("Enter arithmetic expression: ");
             expression = scanner.nextLine();
-            if(expression.equals("x"))
-                System.exit(0);
+            if("x".equals(expression))
+                return;
             try {
                 result = calculator.compute(expression);
                 System.out.println("The result is: " + result + "\n");
