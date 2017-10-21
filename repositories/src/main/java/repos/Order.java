@@ -37,7 +37,7 @@ public class Order implements Comparable {
 
     @Override
     public String toString() {
-        return "repos.Order{" +
+        return "Order{" +
                 "id=" + id +
                 ", price=" + price +
                 ", quantity=" + quantity +

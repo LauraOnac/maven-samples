@@ -37,8 +37,8 @@ public class InMemoryRepositoryBenchmark {
             noOrders = 100;
             orders = new ArrayList<>();
             for(int i = 0; i < noOrders; i++){
-                int price = random.nextInt(1000);
-                int quantity = random.nextInt(500);
+                int price = random.nextInt(50);
+                int quantity = random.nextInt(10);
                 Order order = new Order(i, price, quantity);
                 orders.add(order);
             }
@@ -171,7 +171,49 @@ public class InMemoryRepositoryBenchmark {
         }
     }
     /*
-    Helper methods for add, remove and contains
+   States for ConcurrentHashMap
+    */
+    /*
+    State used for add.
+    The repository is initially empty.
+     */
+    @State(Scope.Benchmark)
+    public static class ConcurrentHashMapAddState extends MyState {
+        @Setup(Level.Iteration)
+        public void createRepository(){
+            repository = new ConcurrentHashMapBasedRepository<>();
+        }
+    }
+    /*
+    State used for remove.
+    The repository initially contains all the orders.
+     */
+    @State(Scope.Benchmark)
+    public static class ConcurrentHashMapRemoveState extends MyState {
+        @Setup(Level.Iteration)
+        public void createRepository(){
+            repository = new ConcurrentHashMapBasedRepository<>();
+            for(int i = 0; i < noOrders; i++){
+                repository.add(orders.get(i));
+            }
+        }
+    }
+    /*
+   State used for contains.
+   The repository initially contains half of the orders.
+    */
+    @State(Scope.Benchmark)
+    public static class ConcurrentHashMapContainsState extends MyState {
+        @Setup(Level.Iteration)
+        public void createRepository(){
+            repository = new ConcurrentHashMapBasedRepository<>();
+            for(int i = 0; i < noOrders / 2; i++){
+                repository.add(orders.get(i));
+            }
+        }
+    }
+    /*
+    Helper methods for add, remove and contains benchmark tests
      */
     public Order getRandomOrder(List<Order> orders){
         int index = random.nextInt(orders.size());
@@ -252,6 +294,27 @@ public class InMemoryRepositoryBenchmark {
         state.repository = contains(state.repository, state.orders);
         return state.repository;
     }
+    /*
+   ConcurrentHashMap benchmarks
+    */
+    @Benchmark
+    public InMemoryRepository<Order> addConcurrentHashMap(ConcurrentHashMapAddState state){
+        state.repository = add(state.repository, state.orders);
+        return state.repository;
+    }
+
+    @Benchmark
+    public InMemoryRepository<Order> removeConcurrentHashMap(ConcurrentHashMapRemoveState state){
+        state.repository = remove(state.repository, state.orders);
+        return state.repository;
+    }
+
+    @Benchmark
+    public InMemoryRepository<Order> containsConcurrentHashMap(ConcurrentHashMapContainsState state){
+        state.repository = contains(state.repository, state.orders);
+        return state.repository;
+    }
+
 
     public static void main(String[] args) throws RunnerException {
         Options opt = new OptionsBuilder()
