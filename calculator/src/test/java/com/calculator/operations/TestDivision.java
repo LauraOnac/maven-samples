@@ -5,7 +5,10 @@ import org.junit.Before;
 import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
-import static org.junit.Assert.assertTrue;
+
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.equalTo;
 
 public class TestDivision {
 
@@ -26,7 +29,8 @@ public class TestDivision {
     public void divisionWithOneOperand() {
         List<Double> operands = new ArrayList<>();
         operands.add(1d);
-        assertTrue(division.execute(operands) == 1);
+        double result = division.execute(operands);
+        assertThat(result, is(equalTo(1.0)));
     }
 
     @Test
@@ -34,7 +38,8 @@ public class TestDivision {
         List<Double> operands = new ArrayList<>();
         operands.add(1d);
         operands.add(2d);
-        assertTrue(division.execute(operands) == 0.5);
+        double result = division.execute(operands);
+        assertThat(result, is(equalTo(0.5)));
     }
 
     @Test
@@ -43,7 +48,8 @@ public class TestDivision {
         operands.add(10d);
         operands.add(2d);
         operands.add(2d);
-        assertTrue(division.execute(operands) == 2.5);
+        double result = division.execute(operands);
+        assertThat(result, is(equalTo(2.5)));
     }
 
     @Test(expected = CalculatorException.class)

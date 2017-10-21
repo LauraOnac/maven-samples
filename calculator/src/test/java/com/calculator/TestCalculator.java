@@ -2,7 +2,10 @@ package com.calculator;
 
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.assertTrue;
+
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.equalTo;
 
 public class TestCalculator {
 
@@ -16,31 +19,31 @@ public class TestCalculator {
   @Test
   public void simplePlusExpression(){
     double result = calculator.compute("1+2+3+4");
-    assertTrue(result == 10);
+    assertThat(result, is(equalTo(10.0)));
   }
 
   @Test
   public void simpleMinusExpression(){
     double result = calculator.compute("1-2-3-4");
-    assertTrue(result == -8);
+    assertThat(result, is(equalTo(-8.0)));
   }
 
   @Test
   public void simpleMultiplyExpression(){
     double result = calculator.compute("1*2*3*4");
-    assertTrue(result == 24);
+    assertThat(result, is(equalTo(24.0)));
   }
 
   @Test
   public void simpleDivideExpression(){
     double result = calculator.compute("8/4/2/1");
-    assertTrue(result == 1);
+    assertThat(result, is(equalTo(1.0)));
   }
 
   @Test
   public void complexExpression(){
     double result = calculator.compute("1+2*3-12/2+1");
-    assertTrue(result == 2);
+    assertThat(result, is(equalTo(2.0)));
   }
 
   @Test(expected = CalculatorException.class)

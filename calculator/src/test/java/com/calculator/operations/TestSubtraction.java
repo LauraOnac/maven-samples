@@ -5,7 +5,9 @@ import org.junit.Before;
 import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.equalTo;
 
 public class TestSubtraction {
 
@@ -26,7 +28,8 @@ public class TestSubtraction {
   public void subtractionWithOneOperand() {
     List<Double> operands = new ArrayList<>();
     operands.add(1d);
-    assertTrue(subtraction.execute(operands) == 1);
+    double result = subtraction.execute(operands);
+    assertThat(result, is(equalTo(1.0)));
   }
 
   @Test
@@ -34,7 +37,8 @@ public class TestSubtraction {
     List<Double> operands = new ArrayList<>();
     operands.add(2d);
     operands.add(1d);
-    assertTrue(subtraction.execute(operands) == 1);
+    double result = subtraction.execute(operands);
+    assertThat(result, is(equalTo(1.0)));
   }
 
   @Test
@@ -43,6 +47,7 @@ public class TestSubtraction {
     operands.add(3d);
     operands.add(2d);
     operands.add(1d);
-    assertTrue(subtraction.execute(operands) == 0);
+    double result = subtraction.execute(operands);
+    assertThat(result, is(equalTo(0.0)));
   }
 }

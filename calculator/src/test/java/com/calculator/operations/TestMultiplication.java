@@ -5,7 +5,9 @@ import org.junit.Before;
 import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.equalTo;
 
 public class TestMultiplication {
 
@@ -26,7 +28,8 @@ public class TestMultiplication {
     public void multiplicationWithOneOperand() {
         List<Double> operands = new ArrayList<>();
         operands.add(1d);
-        assertTrue(multiplication.execute(operands) == 1);
+        double result = multiplication.execute(operands);
+        assertThat(result, is(equalTo(1.0)));
     }
 
     @Test
@@ -34,7 +37,8 @@ public class TestMultiplication {
         List<Double> operands = new ArrayList<>();
         operands.add(1d);
         operands.add(2d);
-        assertTrue(multiplication.execute(operands) == 2);
+        double result = multiplication.execute(operands);
+        assertThat(result, is(equalTo(2.0)));
     }
 
     @Test
@@ -43,6 +47,7 @@ public class TestMultiplication {
         operands.add(2d);
         operands.add(3d);
         operands.add(4d);
-        assertTrue(multiplication.execute(operands) == 24);
+        double result = multiplication.execute(operands);
+        assertThat(result, is(equalTo(24.0)));
     }
 }
