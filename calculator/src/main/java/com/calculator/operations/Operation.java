@@ -5,6 +5,6 @@ import java.util.List;
 /**
  * Created by Laura on 10/3/2017.
  */
-interface Operation {
+public interface Operation {
     double execute(List<Double> operands);
 }

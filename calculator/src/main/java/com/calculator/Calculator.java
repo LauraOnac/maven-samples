@@ -1,28 +1,25 @@
 package com.calculator;
 
-import com.calculator.operations.Addition;
-import com.calculator.operations.Division;
-import com.calculator.operations.Multiplication;
-import com.calculator.operations.Subtraction;
+import com.calculator.operations.*;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Laura on 10/3/2017.
  */
 public class Calculator {
-    private Addition addition;
-    private Subtraction subtraction;
-    private Multiplication multiplication;
-    private Division division;
-
+    private Map<Operator,Operation> operations;
+    
     public Calculator(){
-        addition = new Addition();
-        subtraction = new Subtraction();
-        multiplication = new Multiplication();
-        division = new Division();
+        operations = new HashMap<>();
+        operations.put(Operator.PLUS, new Addition());
+        operations.put(Operator.MINUS, new Subtraction());
+        operations.put(Operator.TIMES, new Multiplication());
+        operations.put(Operator.DIVIDE, new Division());
     }
 
     public double compute(String expression){
@@ -30,45 +27,40 @@ public class Calculator {
     }
 
     private double computeSum(String expression){
-        String[] items = splitExpression(expression, "\\+");
-        List<Double> numbers = getOperands(items, "subtraction");
-        return addition.execute(numbers);
+        String[] items = splitExpression(expression, Operator.PLUS);
+        List<Double> numbers = getOperands(items, Operator.MINUS);
+        return operations.get(Operator.PLUS).execute(numbers);
     }
 
     private double computeDifference(String expression){
-        String[] items = splitExpression(expression, "-");
-        List<Double> numbers = getOperands(items, "multiplication");
-        return subtraction.execute(numbers);
+        String[] items = splitExpression(expression, Operator.MINUS);
+        List<Double> numbers = getOperands(items, Operator.TIMES);
+        return operations.get(Operator.MINUS).execute(numbers);
     }
 
     private double computeProduct(String expression){
-        String[] items = splitExpression(expression, "\\*");
-        List<Double> numbers = getOperands(items, "division");
-        return multiplication.execute(numbers);
+        String[] items = splitExpression(expression, Operator.TIMES);
+        List<Double> numbers = getOperands(items, Operator.DIVIDE);
+        return operations.get(Operator.TIMES).execute(numbers);
     }
 
     private double computeQuotient(String expression){
-        String[] items = splitExpression(expression, "/");
-        List<Double> numbers = getOperands(items, "none");
-        return division.execute(numbers);
+        String[] items = splitExpression(expression, Operator.DIVIDE);
+        List<Double> numbers = getOperands(items, Operator.NONE);
+        return operations.get(Operator.DIVIDE).execute(numbers);
     }
 
-    private String[] splitExpression(String expression, String operator) throws CalculatorException{
-        String[] items = expression.split(operator);
+    private String[] splitExpression(String expression, Operator operator) throws CalculatorException{
+        String[] items = expression.split("\\" + operator.getSign());
         if(items.length == 1 && !items[0].equals(expression))
             throw new CalculatorException("Invalid expression!");
-        String character = operator;
-        if("\\+".equals(operator))
-            character = "+";
-        if("\\*".equals(operator))
-            character = "*";
-        int noOperatorMatches = StringUtils.countMatches(expression, character);
+        int noOperatorMatches = StringUtils.countMatches(expression, operator.getSign());
         if(items.length > 1 && items.length != noOperatorMatches + 1)
             throw new CalculatorException("Invalid expression!");
         return items;
     }
 
-    private List<Double> getOperands(String[] items, String higherPriorityOperation) throws CalculatorException{
+    private List<Double> getOperands(String[] items, Operator higherPriorityOperation) throws CalculatorException{
         List<Double> numbers = new ArrayList<>();
         int index;
         for (index = 0; index < items.length; index++){
@@ -79,13 +71,13 @@ public class Calculator {
             }
             catch(NumberFormatException e) {
                 switch (higherPriorityOperation) {
-                    case "subtraction":
+                    case MINUS:
                         number = computeDifference(items[index]);
                         break;
-                    case "multiplication":
+                    case TIMES:
                         number = computeProduct(items[index]);
                         break;
-                    case "division":
+                    case DIVIDE:
                         number = computeQuotient(items[index]);
                         break;
                     default:
