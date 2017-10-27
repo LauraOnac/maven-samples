@@ -14,7 +14,10 @@ import java.util.function.Supplier;
  */
 @State(Scope.Benchmark)
 public class SizeState {
-    @Param({"1000", "10000"})
+//    @Param({"1000", "10000"})
+//    public int size;
+
+    @Param({"100"})
     public int size;
 
     public Supplier<Order> existing = new Supplier<Order>() {
