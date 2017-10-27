@@ -1,4 +1,4 @@
-package repos;
+package com.benchmarks.repos;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -26,5 +26,10 @@ public class ConcurrentHashMapBasedRepository<T> implements InMemoryRepository<T
     @Override
     public void remove(T element) {
         map.values().remove(element);
+    }
+
+    @Override
+    public void clear() {
+        map.clear();
     }
 }

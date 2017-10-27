@@ -1,9 +1,11 @@
-package repos;
+package com.benchmarks;
+
+import java.util.Objects;
 
 /**
  * Created by Laura on 10/17/2017.
  */
-public class Order implements Comparable {
+public class Order implements Comparable<Order> {
     private int id;
     private int price;
     private int quantity;
@@ -29,10 +31,7 @@ public class Order implements Comparable {
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + price;
-        result = 31 * result + quantity;
-        return result;
+        return Objects.hash(id);
     }
 
     @Override
@@ -45,17 +44,8 @@ public class Order implements Comparable {
     }
 
     @Override
-    public int compareTo(Object o) {
-        if (this == o) return -2;
-        if (!(o instanceof Order)) return -3;
-
-        Order order = (Order) o;
-
-        if(price < order.getPrice())
-            return -1;
-        if(price > order.getPrice())
-            return 1;
-        return 0;
+    public int compareTo(Order o) {
+        return Long.compare(this.id, o.id);
     }
 
     public int getId() {

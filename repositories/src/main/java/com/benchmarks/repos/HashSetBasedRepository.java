@@ -1,4 +1,4 @@
-package repos;
+package com.benchmarks.repos;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -26,5 +26,10 @@ public class HashSetBasedRepository<T> implements InMemoryRepository<T> {
     @Override
     public void remove(T element) {
         set.remove(element);
+    }
+
+    @Override
+    public void clear() {
+        set.clear();
     }
 }

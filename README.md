@@ -50,9 +50,9 @@ From the [Codacy Coverage report tool](https://github.com/codacy/codacy-coverage
 ```yaml
 before_install:
   - sudo apt-get install jq
-  - wget -O ~/codacy-coverage-reporter-assembly-latest.jar $(curl https://api.github.com/repos/codacy/codacy-coverage-reporter/releases/latest | jq -r .assets[0].browser_download_url)
+  - com.benchmarks.repos
 after_success:
-  - java -cp ~/codacy-coverage-reporter-assembly-latest.jar com.codacy.CodacyCoverageReporter -l Java -r report/target/site/jacoco-aggregate/jacoco.xml
+  - java -cp ~/codacy-coverage-reporter-assembly-com.benchmarks.repost.jar com.codacy.CodacyCoverageReporter -l Java -r report/target/site/jacoco-aggregate/jacoco.xml
 ```
 - This downloads the reporter jar which is used in a post step to actually send the coverage report to Codacy
 
@@ -67,7 +67,7 @@ before_install:
   - sudo apt-get install jq
   - wget -O ~/codacy-coverage-reporter-assembly-latest.jar $(curl https://api.github.com/repos/codacy/codacy-coverage-reporter/releases/latest | jq -r .assets[0].browser_download_url)
 after_success:
-  - java -cp ~/codacy-coverage-reporter-assembly-latest.jar com.codacy.CodacyCoverageReporter -l Java -r report/target/site/jacoco-aggregate/jacoco.xml
+  - java -cp ~/codacy-coverage-reporter-assembly-com.benchmarks.repost.jar com.codacy.CodacyCoverageReporter -l Java -r report/target/site/jacoco-aggregate/jacoco.xml
 install: true
 cache:
  directories:

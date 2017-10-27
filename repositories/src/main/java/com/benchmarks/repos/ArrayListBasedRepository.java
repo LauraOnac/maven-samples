@@ -1,4 +1,4 @@
-package repos;
+package com.benchmarks.repos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,5 +26,10 @@ public class ArrayListBasedRepository<T> implements InMemoryRepository<T> {
     @Override
     public void remove(T element) {
         list.remove(element);
+    }
+
+    @Override
+    public void clear(){
+        list.clear();
     }
 }
