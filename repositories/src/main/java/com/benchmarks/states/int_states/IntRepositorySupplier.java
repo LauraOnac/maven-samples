@@ -1,12 +1,8 @@
 package com.benchmarks.states.int_states;
 
 import com.benchmarks.repos.int_repos.IntInMemoryRepository;
-import com.benchmarks.repos.int_repos.eclipse_collections.EclipseArrayListRepository;
-import com.benchmarks.repos.int_repos.eclipse_collections.EclipseHashSetRepository;
-import com.benchmarks.repos.int_repos.jdk_collections.ArrayListRepository;
-import com.benchmarks.repos.int_repos.jdk_collections.ConcurrentHashMapRepository;
-import com.benchmarks.repos.int_repos.jdk_collections.HashSetRepository;
-import com.benchmarks.repos.int_repos.jdk_collections.TreeSetRepository;
+import com.benchmarks.repos.int_repos.eclipse_collections.*;
+import com.benchmarks.repos.int_repos.jdk_collections.*;
 
 import java.util.function.Supplier;
 
