@@ -1,0 +1,15 @@
+# Run complete. Total time: 00:12:32
+
+Benchmark                    (repositorySupplier)  (size)      Mode  Cnt      Score     Error   Units
+TestRemove.removeAfter                 HASH_SET          100  thrpt   40  16366.876 ± 104.328  ops/ms
+TestRemove.removeAfter                 TREE_SET          100  thrpt   40  21022.168 ±  30.485  ops/ms
+TestRemove.removeAfter               ARRAY_LIST          100  thrpt   40  21672.866 ± 207.720  ops/ms
+TestRemoveOrder.removeAfter      CONCURRENT_HASH_MAP     100  thrpt   40   1796.950 ±  14.981  ops/ms
+TestRemove.removeBefore                HASH_SET          100  thrpt   40  16545.000 ±  65.473  ops/ms
+TestRemove.removeBefore                TREE_SET          100  thrpt   40  12653.393 ±  18.394  ops/ms
+TestRemove.removeBefore              ARRAY_LIST          100  thrpt   40   3122.246 ±   6.902  ops/ms
+TestRemoveOrder.removeBefore     CONCURRENT_HASH_MAP     100  thrpt   40    490.847 ±   1.685  ops/ms
+TestRemove.removeExisting              HASH_SET          100  thrpt   40  19035.416 ±  20.139  ops/ms
+TestRemove.removeExisting              TREE_SET          100  thrpt   40  18524.287 ± 492.309  ops/ms
+TestRemove.removeExisting            ARRAY_LIST          100  thrpt   40  19496.928 ±  40.910  ops/ms
+TestRemoveOrder.removeExisting   CONCURRENT_HASH_MAP     100  thrpt   40    504.023 ±   0.761  ops/ms

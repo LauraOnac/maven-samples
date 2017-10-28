@@ -1,4 +1,4 @@
-package com.benchmarks;
+package com.benchmarks.states.order_states;
 
 import java.util.Objects;
 

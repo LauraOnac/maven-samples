@@ -1,4 +1,4 @@
-package com.benchmarks.repos;
+package com.benchmarks.repos.generic_repos;
 
 /**
  * Created by Laura on 10/17/2017.

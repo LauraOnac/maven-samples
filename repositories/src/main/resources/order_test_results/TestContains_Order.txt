@@ -1,0 +1,15 @@
+# Run complete. Total time: 00:12:32
+
+Benchmark                        (repositorySupplier)     (size)   Mode  Cnt      Score    Error   Units
+TestContains.containsAfter                 HASH_SET          100  thrpt   40  16960.998 ± 60.995  ops/ms
+TestContains.containsAfter                 TREE_SET          100  thrpt   40  10579.601 ±  8.990  ops/ms
+TestContains.containsAfter               ARRAY_LIST          100  thrpt   40   3419.179 ± 61.020  ops/ms
+TestContainsOrder.containsAfter      CONCURRENT_HASH_MAP     100  thrpt   40    666.186 ±  3.465  ops/ms
+TestContains.containsBefore                HASH_SET          100  thrpt   40  16643.522 ± 61.445  ops/ms
+TestContains.containsBefore                TREE_SET          100  thrpt   40  12781.701 ± 34.833  ops/ms
+TestContains.containsBefore              ARRAY_LIST          100  thrpt   40   3270.390 ± 16.172  ops/ms
+TestContainsOrder.containsBefore     CONCURRENT_HASH_MAP     100  thrpt   40    630.042 ±  7.178  ops/ms
+TestContains.containsExisting              HASH_SET          100  thrpt   40  17815.367 ± 34.739  ops/ms
+TestContains.containsExisting              TREE_SET          100  thrpt   40   9360.405 ± 79.700  ops/ms
+TestContains.containsExisting            ARRAY_LIST          100  thrpt   40   5804.417 ±  3.786  ops/ms
+TestContainsOrder.containsBefore     CONCURRENT_HASH_MAP     100  thrpt   40    630.042 ±  7.178  ops/ms

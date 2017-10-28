@@ -1,16 +1,16 @@
-package com.benchmarks.repos;
+package com.benchmarks.repos.generic_repos;
 
+import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * Created by Laura on 10/17/2017.
  */
-public class TreeSetBasedRepository<T> implements InMemoryRepository<T> {
+public class HashSetBasedRepository<T> implements InMemoryRepository<T> {
     private Set<T> set;
 
-    public TreeSetBasedRepository() {
-        this.set = new TreeSet<>();
+    public HashSetBasedRepository() {
+        this.set = new HashSet<>();
     }
 
     @Override

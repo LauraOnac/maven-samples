@@ -1,0 +1,15 @@
+# Run complete. Total time: 00:12:34
+
+Benchmark            (repositorySupplier)         (size) Mode  Cnt      Score     Error   Units
+TestAdd.addAfter                 HASH_SET          100  thrpt   40  12612.297 ± 161.270  ops/ms
+TestAdd.addAfter                 TREE_SET          100  thrpt   40  16987.265 ± 139.782  ops/ms
+TestAdd.addAfter               ARRAY_LIST          100  thrpt   40  19004.480 ±  43.831  ops/ms
+TestAddOrder.addAfter      CONCURRENT_HASH_MAP     100  thrpt   40   9722.425 ± 328.297  ops/ms
+TestAdd.addBefore                HASH_SET          100  thrpt   40  12007.220 ± 343.942  ops/ms
+TestAdd.addBefore                TREE_SET          100  thrpt   40  10537.163 ±  78.072  ops/ms
+TestAdd.addBefore              ARRAY_LIST          100  thrpt   40  19055.066 ±  36.978  ops/ms
+TestAddOrder.addBefore     CONCURRENT_HASH_MAP     100  thrpt   40   9053.307 ± 163.926  ops/ms
+TestAdd.addExisting              HASH_SET          100  thrpt   40  13428.773 ±  75.980  ops/ms
+TestAdd.addExisting              TREE_SET          100  thrpt   40  13632.912 ± 107.528  ops/ms
+TestAdd.addExisting            ARRAY_LIST          100  thrpt   40  18641.951 ±  67.502  ops/ms
+TestAddOrder.addExisting   CONCURRENT_HASH_MAP     100  thrpt   40  10343.738 ± 108.240  ops/ms

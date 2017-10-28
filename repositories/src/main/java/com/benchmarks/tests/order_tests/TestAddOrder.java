@@ -1,7 +1,8 @@
-package com.benchmarks;
+package com.benchmarks.tests.order_tests;
 
-import com.benchmarks.states.RepoState;
-import com.benchmarks.states.SizeState;
+import com.benchmarks.states.order_states.Order;
+import com.benchmarks.states.order_states.RepoState;
+import com.benchmarks.states.order_states.SizeState;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 import org.openjdk.jmh.runner.Runner;
@@ -19,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 @Warmup(iterations = 10, time = 1)
 @Measurement(iterations = 20, time = 1)
 @Fork(2)
-public class TestRemove {
+public class TestAddOrder {
 
     @State(Scope.Benchmark)
     public static class BeforeState {
@@ -31,8 +32,8 @@ public class TestRemove {
         }
 
         @TearDown(Level.Invocation)
-        public void addOrder(RepoState repoState) {
-            repoState.orders.add(order);
+        public void removeOrder(RepoState repoState) {
+            repoState.orders.remove(order);
         }
     }
 
@@ -46,8 +47,8 @@ public class TestRemove {
         }
 
         @TearDown(Level.Invocation)
-        public void addOrder(RepoState repoState) {
-            repoState.orders.add(order);
+        public void removeOrder(RepoState repoState) {
+            repoState.orders.remove(order);
         }
     }
 
@@ -61,32 +62,32 @@ public class TestRemove {
         }
 
         @TearDown(Level.Invocation)
-        public void addOrder(RepoState repoState) {
-            repoState.orders.add(order);
+        public void removeOrder(RepoState repoState) {
+            repoState.orders.remove(order);
         }
     }
 
     @Benchmark
-    public void removeBefore(RepoState repoState, BeforeState before, Blackhole blackhole) {
-        repoState.orders.remove(before.order);
+    public void addBefore(RepoState repoState, BeforeState before, Blackhole blackhole) {
+        repoState.orders.add(before.order);
         blackhole.consume(repoState.orders);
     }
 
     @Benchmark
-    public void removeExisting(RepoState repoState, ExistingState existing, Blackhole blackhole) {
-        repoState.orders.remove(existing.order);
+    public void addExisting(RepoState repoState, ExistingState existing, Blackhole blackhole) {
+        repoState.orders.add(existing.order);
         blackhole.consume(repoState.orders);
     }
 
     @Benchmark
-    public void removeAfter(RepoState repoState, AfterState after, Blackhole blackhole) {
-        repoState.orders.remove(after.order);
+    public void addAfter(RepoState repoState, AfterState after, Blackhole blackhole) {
+        repoState.orders.add(after.order);
         blackhole.consume(repoState.orders);
     }
 
     public static void main(String[] args) throws RunnerException {
         Options opt = new OptionsBuilder()
-                .include(TestAdd.class.getSimpleName()+".*")
+                .include(TestAddOrder.class.getSimpleName())
 //                .jvmArgs("-Xms3048m", "-Xmx3048m", "-XX:+UseG1GC")
 //                .addProfiler(HotspotMemoryProfiler.class)
 //                .forks(1)

@@ -1,7 +1,8 @@
-package com.benchmarks;
+package com.benchmarks.tests.order_tests;
 
-import com.benchmarks.states.RepoState;
-import com.benchmarks.states.SizeState;
+import com.benchmarks.states.order_states.Order;
+import com.benchmarks.states.order_states.RepoState;
+import com.benchmarks.states.order_states.SizeState;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 import org.openjdk.jmh.runner.Runner;
@@ -19,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 @Warmup(iterations = 10, time = 1)
 @Measurement(iterations = 20, time = 1)
 @Fork(2)
-public class TestAdd {
+public class TestContainsOrder {
 
     @State(Scope.Benchmark)
     public static class BeforeState {
@@ -28,11 +29,6 @@ public class TestAdd {
         @Setup(Level.Invocation)
         public void generateOrder(SizeState sizeState) {
             order = sizeState.before.get();
-        }
-
-        @TearDown(Level.Invocation)
-        public void removeOrder(RepoState repoState) {
-            repoState.orders.remove(order);
         }
     }
 
@@ -44,11 +40,6 @@ public class TestAdd {
         public void generateOrder(SizeState sizeState) {
             order = sizeState.existing.get();
         }
-
-        @TearDown(Level.Invocation)
-        public void removeOrder(RepoState repoState) {
-            repoState.orders.remove(order);
-        }
     }
 
     @State(Scope.Benchmark)
@@ -59,34 +50,26 @@ public class TestAdd {
         public void generateOrder(SizeState sizeState) {
             order = sizeState.after.get();
         }
-
-        @TearDown(Level.Invocation)
-        public void removeOrder(RepoState repoState) {
-            repoState.orders.remove(order);
-        }
     }
 
     @Benchmark
-    public void addBefore(RepoState repoState, BeforeState before, Blackhole blackhole) {
-        repoState.orders.add(before.order);
-        blackhole.consume(repoState.orders);
+    public void containsBefore(RepoState repoState, BeforeState before, Blackhole blackhole) {
+        blackhole.consume(repoState.orders.contains(before.order));
     }
 
     @Benchmark
-    public void addExisting(RepoState repoState, ExistingState existing, Blackhole blackhole) {
-        repoState.orders.add(existing.order);
-        blackhole.consume(repoState.orders);
+    public void containsExisting(RepoState repoState, ExistingState existing, Blackhole blackhole) {
+        blackhole.consume(repoState.orders.contains(existing.order));
     }
 
     @Benchmark
-    public void addAfter(RepoState repoState, AfterState after, Blackhole blackhole) {
-        repoState.orders.add(after.order);
-        blackhole.consume(repoState.orders);
+    public void containsAfter(RepoState repoState, AfterState after, Blackhole blackhole) {
+        blackhole.consume(repoState.orders.contains(after.order));
     }
 
     public static void main(String[] args) throws RunnerException {
         Options opt = new OptionsBuilder()
-                .include(TestAdd.class.getSimpleName()+".*")
+                .include(TestContainsOrder.class.getSimpleName())
 //                .jvmArgs("-Xms3048m", "-Xmx3048m", "-XX:+UseG1GC")
 //                .addProfiler(HotspotMemoryProfiler.class)
 //                .forks(1)

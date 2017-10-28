@@ -1,4 +1,4 @@
-package com.benchmarks.repos;
+package com.benchmarks.repos.generic_repos;
 
 import java.util.ArrayList;
 import java.util.List;

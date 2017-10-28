@@ -1,7 +1,6 @@
-package com.benchmarks.states;
+package com.benchmarks.states.order_states;
 
-import com.benchmarks.Order;
-import com.benchmarks.repos.InMemoryRepository;
+import com.benchmarks.repos.generic_repos.InMemoryRepository;
 import org.openjdk.jmh.annotations.*;
 
 import java.util.stream.IntStream;

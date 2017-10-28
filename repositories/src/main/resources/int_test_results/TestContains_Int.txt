@@ -1,0 +1,15 @@
+# Run complete. Total time: 00:12:39
+
+Benchmark                         (intRepositorySupplier)  (size)   Mode  Cnt      Score     Error   Units
+TestContainsInt.containsAfter                  ARRAY_LIST     100  thrpt   40   3715.111 ±  27.381  ops/ms
+TestContainsInt.containsAfter                    HASH_SET     100  thrpt   40  18346.236 ± 476.189  ops/ms
+TestContainsInt.containsAfter          ECLIPSE_ARRAY_LIST     100  thrpt   40   7288.756 ±   7.819  ops/ms
+TestContainsInt.containsAfter            ECLIPSE_HASH_SET     100  thrpt   40  18171.038 ±  39.073  ops/ms
+TestContainsInt.containsBefore                 ARRAY_LIST     100  thrpt   40   3567.891 ±   3.338  ops/ms
+TestContainsInt.containsBefore                   HASH_SET     100  thrpt   40  18206.414 ±  86.494  ops/ms
+TestContainsInt.containsBefore         ECLIPSE_ARRAY_LIST     100  thrpt   40   7318.855 ±   5.650  ops/ms
+TestContainsInt.containsBefore           ECLIPSE_HASH_SET     100  thrpt   40  18180.153 ±  13.321  ops/ms
+TestContainsInt.containsExisting               ARRAY_LIST     100  thrpt   40   6498.678 ±  17.681  ops/ms
+TestContainsInt.containsExisting                 HASH_SET     100  thrpt   40  19044.045 ± 269.553  ops/ms
+TestContainsInt.containsExisting       ECLIPSE_ARRAY_LIST     100  thrpt   40  10668.639 ±  13.921  ops/ms
+TestContainsInt.containsExisting         ECLIPSE_HASH_SET     100  thrpt   40  19455.892 ±  99.874  ops/ms

@@ -1,7 +1,7 @@
-package com.benchmarks;
+package com.benchmarks.tests.int_tests;
 
-import com.benchmarks.states.RepoState;
-import com.benchmarks.states.SizeState;
+import com.benchmarks.states.int_states.IntRepoState;
+import com.benchmarks.states.int_states.IntSizeState;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 import org.openjdk.jmh.runner.Runner;
@@ -19,56 +19,56 @@ import java.util.concurrent.TimeUnit;
 @Warmup(iterations = 10, time = 1)
 @Measurement(iterations = 20, time = 1)
 @Fork(2)
-public class TestContains {
+public class TestContainsInt {
 
     @State(Scope.Benchmark)
     public static class BeforeState {
-        public Order order;
+        public int number;
 
         @Setup(Level.Invocation)
-        public void generateOrder(SizeState sizeState) {
-            order = sizeState.before.get();
+        public void generateOrder(IntSizeState sizeState) {
+            number = sizeState.before.get();
         }
     }
 
     @State(Scope.Benchmark)
     public static class ExistingState {
-        public Order order;
+        public int number;
 
         @Setup(Level.Invocation)
-        public void generateOrder(SizeState sizeState) {
-            order = sizeState.existing.get();
+        public void generateOrder(IntSizeState sizeState) {
+            number = sizeState.existing.get();
         }
     }
 
     @State(Scope.Benchmark)
     public static class AfterState {
-        public Order order;
+        public int number;
 
         @Setup(Level.Invocation)
-        public void generateOrder(SizeState sizeState) {
-            order = sizeState.after.get();
+        public void generateOrder(IntSizeState sizeState) {
+            number = sizeState.after.get();
         }
     }
 
     @Benchmark
-    public void containsBefore(RepoState repoState, BeforeState before, Blackhole blackhole) {
-        blackhole.consume(repoState.orders.contains(before.order));
+    public void containsBefore(IntRepoState repoState, BeforeState before, Blackhole blackhole) {
+        blackhole.consume(repoState.numbers.contains(before.number));
     }
 
     @Benchmark
-    public void containsExisting(RepoState repoState, ExistingState existing, Blackhole blackhole) {
-        blackhole.consume(repoState.orders.contains(existing.order));
+    public void containsExisting(IntRepoState repoState, ExistingState existing, Blackhole blackhole) {
+        blackhole.consume(repoState.numbers.contains(existing.number));
     }
 
     @Benchmark
-    public void containsAfter(RepoState repoState, AfterState after, Blackhole blackhole) {
-        blackhole.consume(repoState.orders.contains(after.order));
+    public void containsAfter(IntRepoState repoState, AfterState after, Blackhole blackhole) {
+        blackhole.consume(repoState.numbers.contains(after.number));
     }
 
     public static void main(String[] args) throws RunnerException {
         Options opt = new OptionsBuilder()
-                .include(TestAdd.class.getSimpleName()+".*")
+                .include(TestContainsInt.class.getSimpleName())
 //                .jvmArgs("-Xms3048m", "-Xmx3048m", "-XX:+UseG1GC")
 //                .addProfiler(HotspotMemoryProfiler.class)
 //                .forks(1)

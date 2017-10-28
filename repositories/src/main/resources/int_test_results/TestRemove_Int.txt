@@ -1,0 +1,15 @@
+# Run complete. Total time: 00:12:38
+
+Benchmark                     (intRepositorySupplier)  (size)   Mode  Cnt      Score     Error   Units
+TestRemoveInt.removeAfter                  ARRAY_LIST     100  thrpt   40  21940.618 ±  77.820  ops/ms
+TestRemoveInt.removeAfter                    HASH_SET     100  thrpt   40  17747.400 ± 331.382  ops/ms
+TestRemoveInt.removeAfter          ECLIPSE_ARRAY_LIST     100  thrpt   40  22509.857 ±  50.293  ops/ms
+TestRemoveInt.removeAfter            ECLIPSE_HASH_SET     100  thrpt   40  19500.047 ±  16.485  ops/ms
+TestRemoveInt.removeBefore                 ARRAY_LIST     100  thrpt   40   3822.482 ±   2.491  ops/ms
+TestRemoveInt.removeBefore                   HASH_SET     100  thrpt   40  18117.041 ±  87.681  ops/ms
+TestRemoveInt.removeBefore         ECLIPSE_ARRAY_LIST     100  thrpt   40   7321.624 ±   5.770  ops/ms
+TestRemoveInt.removeBefore           ECLIPSE_HASH_SET     100  thrpt   40  18234.118 ± 118.964  ops/ms
+TestRemoveInt.removeExisting               ARRAY_LIST     100  thrpt   40  19513.152 ±  21.350  ops/ms
+TestRemoveInt.removeExisting                 HASH_SET     100  thrpt   40  18014.655 ± 758.068  ops/ms
+TestRemoveInt.removeExisting       ECLIPSE_ARRAY_LIST     100  thrpt   40  20612.400 ± 119.203  ops/ms
+TestRemoveInt.removeExisting         ECLIPSE_HASH_SET     100  thrpt   40  19042.646 ± 122.842  ops/ms

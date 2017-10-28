@@ -1,6 +1,5 @@
-package com.benchmarks.states;
+package com.benchmarks.states.int_states;
 
-import com.benchmarks.Order;
 import org.openjdk.jmh.annotations.Param;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.State;
@@ -13,40 +12,37 @@ import java.util.function.Supplier;
  * Created by Laura on 10/27/2017.
  */
 @State(Scope.Benchmark)
-public class SizeState {
+public class IntSizeState {
 //    @Param({"1000", "10000"})
 //    public int size;
 
     @Param({"100"})
     public int size;
 
-    public Supplier<Order> existing = new Supplier<Order>() {
+    public Supplier<Integer> existing = new Supplier<Integer>() {
         private final Random random = new Random();
 
         @Override
-        public Order get() {
-            int id = random.nextInt(size);
-            return new Order(id,id,id);
+        public Integer get() {
+            return random.nextInt(size);
         }
     };
 
-    public Supplier<Order> before = new Supplier<Order>() {
+    public Supplier<Integer> before = new Supplier<Integer>() {
         private final AtomicInteger currentSize = new AtomicInteger(size);
 
         @Override
-        public Order get() {
-            int id = currentSize.decrementAndGet();
-            return new Order(id,id,id);
+        public Integer get() {
+            return currentSize.decrementAndGet();
         }
     };
 
-    public Supplier<Order> after = new Supplier<Order>() {
+    public Supplier<Integer> after = new Supplier<Integer>() {
         private final AtomicInteger currentSize = new AtomicInteger(size);
 
         @Override
-        public Order get() {
-            int id = currentSize.incrementAndGet();
-            return new Order(id,id,id);
+        public Integer get() {
+            return currentSize.incrementAndGet();
         }
     };
 
