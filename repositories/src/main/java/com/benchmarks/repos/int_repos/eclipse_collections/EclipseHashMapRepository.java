@@ -1,18 +1,16 @@
-package com.benchmarks.repos.int_repos.jdk_collections;
+package com.benchmarks.repos.int_repos.eclipse_collections;
 
 import com.benchmarks.repos.int_repos.IntInMemoryRepository;
-
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import org.eclipse.collections.impl.map.mutable.primitive.IntIntHashMap;
 
 /**
  * Created by Laura on 10/28/2017.
  */
-public class ConcurrentHashMapRepository implements IntInMemoryRepository{
-    private Map<Integer,Integer> map;
+public class EclipseHashMapRepository implements IntInMemoryRepository {
+    private IntIntHashMap map;
 
-    public ConcurrentHashMapRepository() {
-        this.map = new ConcurrentHashMap<>();
+    public EclipseHashMapRepository() {
+        this.map = new IntIntHashMap();
     }
 
     @Override
@@ -27,7 +25,7 @@ public class ConcurrentHashMapRepository implements IntInMemoryRepository{
 
     @Override
     public void remove(int element) {
-        map.values().remove(element);
+        map.remove(element);
     }
 
     @Override
