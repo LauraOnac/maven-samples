@@ -26,7 +26,7 @@ public class TestRemoveInt {
         public int number;
 
         @Setup(Level.Invocation)
-        public void generateOrder(IntSizeState sizeState) {
+        public void generateNumber(IntSizeState sizeState) {
             number = sizeState.before.get();
         }
     }
@@ -36,7 +36,7 @@ public class TestRemoveInt {
         public int number;
 
         @Setup(Level.Invocation)
-        public void generateOrder(IntSizeState sizeState) {
+        public void generateNumber(IntSizeState sizeState) {
             number = sizeState.existing.get();
         }
     }
@@ -46,7 +46,7 @@ public class TestRemoveInt {
         public int number;
 
         @Setup(Level.Invocation)
-        public void generateOrder(IntSizeState sizeState) {
+        public void generateNumber(IntSizeState sizeState) {
             number = sizeState.after.get();
         }
     }

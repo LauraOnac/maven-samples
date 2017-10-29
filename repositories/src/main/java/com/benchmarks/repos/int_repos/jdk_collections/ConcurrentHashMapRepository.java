@@ -22,12 +22,12 @@ public class ConcurrentHashMapRepository implements IntInMemoryRepository{
 
     @Override
     public boolean contains(int element) {
-        return map.containsValue(element);
+        return map.containsKey(element);
     }
 
     @Override
     public void remove(int element) {
-        map.values().remove(element);
+        map.remove(element);
     }
 
     @Override

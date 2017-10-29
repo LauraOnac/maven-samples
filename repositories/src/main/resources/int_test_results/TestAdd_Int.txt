@@ -13,3 +13,39 @@ TestAddInt.addExisting               ARRAY_LIST     100  thrpt   40  17974.197 �
 TestAddInt.addExisting                 HASH_SET     100  thrpt   40  14388.002 ± 107.191  ops/ms
 TestAddInt.addExisting       ECLIPSE_ARRAY_LIST     100  thrpt   40  21825.925 ±  69.138  ops/ms
 TestAddInt.addExisting         ECLIPSE_HASH_SET     100  thrpt   40  17127.930 ±  40.465  ops/ms
+
+
+# Run complete. Total time: 00:35:53
+
+Benchmark               (intRepositorySupplier)  (size)   Mode  Cnt      Score      Error   Units
+TestAddInt.addAfter              JDK_ARRAY_LIST     100  thrpt   40  16792.627 ±  206.581  ops/ms
+TestAddInt.addAfter                JDK_HASH_SET     100  thrpt   40  13438.619 ±   73.568  ops/ms
+TestAddInt.addAfter                JDK_TREE_SET     100  thrpt   40  15327.793 ±  114.081  ops/ms
+TestAddInt.addAfter                JDK_HASH_MAP     100  thrpt   40  10078.651 ±   78.016  ops/ms
+TestAddInt.addAfter          ECLIPSE_ARRAY_LIST     100  thrpt   40  21482.868 ±   77.504  ops/ms
+TestAddInt.addAfter            ECLIPSE_HASH_SET     100  thrpt   40  17097.605 ±  205.583  ops/ms
+TestAddInt.addAfter         FASTUTIL_ARRAY_LIST     100  thrpt   40  20473.241 ±   21.467  ops/ms
+TestAddInt.addAfter           FASTUTIL_HASH_SET     100  thrpt   40  20089.670 ±   86.543  ops/ms
+TestAddInt.addAfter           FASTUTIL_TREE_SET     100  thrpt   40  17436.262 ±  146.516  ops/ms
+TestAddInt.addAfter           FASTUTIL_HASH_MAP     100  thrpt   40  19169.108 ±  144.127  ops/ms
+TestAddInt.addBefore             JDK_ARRAY_LIST     100  thrpt   40  17099.128 ±  114.409  ops/ms
+TestAddInt.addBefore               JDK_HASH_SET     100  thrpt   40  13014.142 ±   57.224  ops/ms
+TestAddInt.addBefore               JDK_TREE_SET     100  thrpt   40   9645.774 ±   52.963  ops/ms
+TestAddInt.addBefore               JDK_HASH_MAP     100  thrpt   40   9388.989 ±   41.158  ops/ms
+TestAddInt.addBefore         ECLIPSE_ARRAY_LIST     100  thrpt   40  21675.656 ±   47.763  ops/ms
+TestAddInt.addBefore           ECLIPSE_HASH_SET     100  thrpt   40  14581.446 ±   77.163  ops/ms
+TestAddInt.addBefore        FASTUTIL_ARRAY_LIST     100  thrpt   40  20607.437 ±   36.704  ops/ms
+TestAddInt.addBefore          FASTUTIL_HASH_SET     100  thrpt   40  17236.640 ±   22.920  ops/ms
+TestAddInt.addBefore          FASTUTIL_TREE_SET     100  thrpt   40   7423.212 ±   44.900  ops/ms
+TestAddInt.addBefore          FASTUTIL_HASH_MAP     100  thrpt   40  15775.873 ± 1469.383  ops/ms
+TestAddInt.addExisting           JDK_ARRAY_LIST     100  thrpt   40  17749.585 ±   65.509  ops/ms
+TestAddInt.addExisting             JDK_HASH_SET     100  thrpt   40  14174.211 ±  128.326  ops/ms
+TestAddInt.addExisting             JDK_TREE_SET     100  thrpt   40  13087.947 ±  136.823  ops/ms
+TestAddInt.addExisting             JDK_HASH_MAP     100  thrpt   40  10980.742 ±   48.972  ops/ms
+TestAddInt.addExisting       ECLIPSE_ARRAY_LIST     100  thrpt   40  21770.583 ±   46.899  ops/ms
+TestAddInt.addExisting         ECLIPSE_HASH_SET     100  thrpt   40  17167.121 ±   84.235  ops/ms
+TestAddInt.addExisting         ECLIPSE_HASH_MAP     100  thrpt   40  10409.152 ±   43.471  ops/ms
+TestAddInt.addExisting      FASTUTIL_ARRAY_LIST     100  thrpt   40  20634.708 ±   65.821  ops/ms
+TestAddInt.addExisting        FASTUTIL_HASH_SET     100  thrpt   40  20093.515 ±   78.645  ops/ms
+TestAddInt.addExisting        FASTUTIL_TREE_SET     100  thrpt   40  12117.784 ±   47.582  ops/ms
+TestAddInt.addExisting        FASTUTIL_HASH_MAP     100  thrpt   40  18419.292 ±   84.174  ops/ms

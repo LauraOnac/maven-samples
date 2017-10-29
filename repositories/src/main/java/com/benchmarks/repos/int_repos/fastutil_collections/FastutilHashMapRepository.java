@@ -20,7 +20,7 @@ public class FastutilHashMapRepository implements IntInMemoryRepository {
 
     @Override
     public boolean contains(int element) {
-        return map.containsValue(element);
+        return map.containsKey(element);
     }
 
     @Override

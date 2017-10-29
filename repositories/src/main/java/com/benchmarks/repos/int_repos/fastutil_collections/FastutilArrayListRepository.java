@@ -25,7 +25,7 @@ public class FastutilArrayListRepository implements IntInMemoryRepository {
 
     @Override
     public void remove(int element) {
-        list.remove(element);
+        list.remove(new Integer(element));
     }
 
     @Override

@@ -26,12 +26,12 @@ public class TestAddInt {
         public int number;
 
         @Setup(Level.Invocation)
-        public void generateOrder(IntSizeState sizeState) {
+        public void generateNumber(IntSizeState sizeState) {
             number = sizeState.before.get();
         }
 
         @TearDown(Level.Invocation)
-        public void removeOrder(IntRepoState repoState) {
+        public void removeNumber(IntRepoState repoState) {
             repoState.numbers.remove(number);
         }
     }
@@ -41,12 +41,12 @@ public class TestAddInt {
         public int number;
 
         @Setup(Level.Invocation)
-        public void generateOrder(IntSizeState sizeState) {
+        public void generateNumber(IntSizeState sizeState) {
             number = sizeState.existing.get();
         }
 
         @TearDown(Level.Invocation)
-        public void removeOrder(IntRepoState repoState) {
+        public void removeNumber(IntRepoState repoState) {
             repoState.numbers.remove(number);
         }
     }
@@ -56,12 +56,12 @@ public class TestAddInt {
         public int number;
 
         @Setup(Level.Invocation)
-        public void generateOrder(IntSizeState sizeState) {
+        public void generateNumber(IntSizeState sizeState) {
             number = sizeState.after.get();
         }
 
         @TearDown(Level.Invocation)
-        public void removeOrder(IntRepoState repoState) {
+        public void removeNumber(IntRepoState repoState) {
             repoState.numbers.remove(number);
         }
     }
