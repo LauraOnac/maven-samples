@@ -13,3 +13,41 @@ TestRemoveInt.removeExisting               ARRAY_LIST     100  thrpt   40  19513
 TestRemoveInt.removeExisting                 HASH_SET     100  thrpt   40  18014.655 ± 758.068  ops/ms
 TestRemoveInt.removeExisting       ECLIPSE_ARRAY_LIST     100  thrpt   40  20612.400 ± 119.203  ops/ms
 TestRemoveInt.removeExisting         ECLIPSE_HASH_SET     100  thrpt   40  19042.646 ± 122.842  ops/ms
+
+
+# Run complete. Total time: 00:34:42
+
+Benchmark                     (intRepositorySupplier)  (size)   Mode  Cnt      Score     Error   Units
+TestRemoveInt.removeAfter              JDK_ARRAY_LIST     100  thrpt   40  21870.888 ±  58.128  ops/ms
+TestRemoveInt.removeAfter                JDK_HASH_SET     100  thrpt   40  18177.650 ± 120.603  ops/ms
+TestRemoveInt.removeAfter                JDK_TREE_SET     100  thrpt   40  18884.728 ±  68.135  ops/ms
+TestRemoveInt.removeAfter                JDK_HASH_MAP     100  thrpt   40  16694.791 ± 125.475  ops/ms
+TestRemoveInt.removeAfter          ECLIPSE_ARRAY_LIST     100  thrpt   40  22582.500 ±  58.832  ops/ms
+TestRemoveInt.removeAfter            ECLIPSE_HASH_SET     100  thrpt   40  19482.303 ±  26.494  ops/ms
+TestRemoveInt.removeAfter            ECLIPSE_HASH_MAP     100  thrpt   40  16405.993 ± 106.008  ops/ms
+TestRemoveInt.removeAfter         FASTUTIL_ARRAY_LIST     100  thrpt   40  22624.476 ±  72.418  ops/ms
+TestRemoveInt.removeAfter           FASTUTIL_HASH_SET     100  thrpt   40  21104.650 ± 240.352  ops/ms
+TestRemoveInt.removeAfter           FASTUTIL_TREE_SET     100  thrpt   40  20325.695 ±  29.755  ops/ms
+TestRemoveInt.removeAfter           FASTUTIL_HASH_MAP     100  thrpt   40  21433.756 ±  26.031  ops/ms
+TestRemoveInt.removeBefore             JDK_ARRAY_LIST     100  thrpt   40   3819.413 ±   4.927  ops/ms
+TestRemoveInt.removeBefore               JDK_HASH_SET     100  thrpt   40  17964.152 ± 118.288  ops/ms
+TestRemoveInt.removeBefore               JDK_TREE_SET     100  thrpt   40  11488.259 ±  43.324  ops/ms
+TestRemoveInt.removeBefore               JDK_HASH_MAP     100  thrpt   40  14868.369 ±  31.438  ops/ms
+TestRemoveInt.removeBefore         ECLIPSE_ARRAY_LIST     100  thrpt   40   7304.343 ±  13.962  ops/ms
+TestRemoveInt.removeBefore           ECLIPSE_HASH_SET     100  thrpt   40  18415.449 ±  24.877  ops/ms
+TestRemoveInt.removeBefore           ECLIPSE_HASH_MAP     100  thrpt   40  15265.090 ±  96.243  ops/ms
+TestRemoveInt.removeBefore        FASTUTIL_ARRAY_LIST     100  thrpt   40   7308.847 ±  11.724  ops/ms
+TestRemoveInt.removeBefore          FASTUTIL_HASH_SET     100  thrpt   40  17994.452 ±  57.660  ops/ms
+TestRemoveInt.removeBefore          FASTUTIL_TREE_SET     100  thrpt   40  12396.867 ±  30.378  ops/ms
+TestRemoveInt.removeBefore          FASTUTIL_HASH_MAP     100  thrpt   40  17822.862 ±  78.988  ops/ms
+TestRemoveInt.removeExisting           JDK_ARRAY_LIST     100  thrpt   40  19548.492 ±  40.554  ops/ms
+TestRemoveInt.removeExisting             JDK_HASH_SET     100  thrpt   40  19365.428 ±  16.080  ops/ms
+TestRemoveInt.removeExisting             JDK_TREE_SET     100  thrpt   40  18689.342 ±  17.420  ops/ms
+TestRemoveInt.removeExisting             JDK_HASH_MAP     100  thrpt   40  17239.581 ± 410.995  ops/ms
+TestRemoveInt.removeExisting       ECLIPSE_ARRAY_LIST     100  thrpt   40  20744.888 ±  83.398  ops/ms
+TestRemoveInt.removeExisting         ECLIPSE_HASH_SET     100  thrpt   40  18742.460 ±  90.003  ops/ms
+TestRemoveInt.removeExisting         ECLIPSE_HASH_MAP     100  thrpt   40  12168.220 ±  47.989  ops/ms
+TestRemoveInt.removeExisting      FASTUTIL_ARRAY_LIST     100  thrpt   40  20075.594 ± 207.977  ops/ms
+TestRemoveInt.removeExisting        FASTUTIL_HASH_SET     100  thrpt   40  20861.415 ±  26.413  ops/ms
+TestRemoveInt.removeExisting        FASTUTIL_TREE_SET     100  thrpt   40  19162.970 ± 238.568  ops/ms
+TestRemoveInt.removeExisting        FASTUTIL_HASH_MAP     100  thrpt   40  20557.844 ± 311.389  ops/ms

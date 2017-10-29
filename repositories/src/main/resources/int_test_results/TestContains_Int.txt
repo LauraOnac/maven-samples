@@ -13,3 +13,41 @@ TestContainsInt.containsExisting               ARRAY_LIST     100  thrpt   40   
 TestContainsInt.containsExisting                 HASH_SET     100  thrpt   40  19044.045 ± 269.553  ops/ms
 TestContainsInt.containsExisting       ECLIPSE_ARRAY_LIST     100  thrpt   40  10668.639 ±  13.921  ops/ms
 TestContainsInt.containsExisting         ECLIPSE_HASH_SET     100  thrpt   40  19455.892 ±  99.874  ops/ms
+
+
+# Run complete. Total time: 00:34:42
+
+Benchmark                         (intRepositorySupplier)  (size)   Mode  Cnt      Score     Error   Units
+TestContainsInt.containsAfter              JDK_ARRAY_LIST     100  thrpt   40   3720.081 ±  33.665  ops/ms
+TestContainsInt.containsAfter                JDK_HASH_SET     100  thrpt   40  18235.190 ± 113.245  ops/ms
+TestContainsInt.containsAfter                JDK_TREE_SET     100  thrpt   40   9441.803 ±  56.725  ops/ms
+TestContainsInt.containsAfter                JDK_HASH_MAP     100  thrpt   40  18582.837 ±  84.581  ops/ms
+TestContainsInt.containsAfter          ECLIPSE_ARRAY_LIST     100  thrpt   40   7262.983 ±   9.679  ops/ms
+TestContainsInt.containsAfter            ECLIPSE_HASH_SET     100  thrpt   40  18074.499 ±  18.518  ops/ms
+TestContainsInt.containsAfter            ECLIPSE_HASH_MAP     100  thrpt   40   1423.864 ± 105.871  ops/ms
+TestContainsInt.containsAfter         FASTUTIL_ARRAY_LIST     100  thrpt   40   7271.311 ±   6.347  ops/ms
+TestContainsInt.containsAfter           FASTUTIL_HASH_SET     100  thrpt   40  18443.090 ±  19.141  ops/ms
+TestContainsInt.containsAfter           FASTUTIL_TREE_SET     100  thrpt   40  12600.389 ±  39.301  ops/ms
+TestContainsInt.containsAfter           FASTUTIL_HASH_MAP     100  thrpt   40  18449.320 ±  14.248  ops/ms
+TestContainsInt.containsBefore             JDK_ARRAY_LIST     100  thrpt   40   3561.586 ±   3.628  ops/ms
+TestContainsInt.containsBefore               JDK_HASH_SET     100  thrpt   40  18311.076 ±  42.057  ops/ms
+TestContainsInt.containsBefore               JDK_TREE_SET     100  thrpt   40  11592.303 ± 285.761  ops/ms
+TestContainsInt.containsBefore               JDK_HASH_MAP     100  thrpt   40  18421.619 ±  44.368  ops/ms
+TestContainsInt.containsBefore         ECLIPSE_ARRAY_LIST     100  thrpt   40   7299.182 ±  11.424  ops/ms
+TestContainsInt.containsBefore           ECLIPSE_HASH_SET     100  thrpt   40  18145.009 ±  21.375  ops/ms
+TestContainsInt.containsBefore           ECLIPSE_HASH_MAP     100  thrpt   40   1601.101 ±  20.745  ops/ms
+TestContainsInt.containsBefore        FASTUTIL_ARRAY_LIST     100  thrpt   40   7307.973 ±   8.040  ops/ms
+TestContainsInt.containsBefore          FASTUTIL_HASH_SET     100  thrpt   40  18200.574 ±  19.016  ops/ms
+TestContainsInt.containsBefore          FASTUTIL_TREE_SET     100  thrpt   40  12803.225 ±  68.551  ops/ms
+TestContainsInt.containsBefore          FASTUTIL_HASH_MAP     100  thrpt   40  18189.942 ±  12.001  ops/ms
+TestContainsInt.containsExisting           JDK_ARRAY_LIST     100  thrpt   40   6436.968 ±  39.850  ops/ms
+TestContainsInt.containsExisting             JDK_HASH_SET     100  thrpt   40  19221.029 ± 191.446  ops/ms
+TestContainsInt.containsExisting             JDK_TREE_SET     100  thrpt   40   9147.843 ±  25.650  ops/ms
+TestContainsInt.containsExisting             JDK_HASH_MAP     100  thrpt   40  19136.071 ±  43.205  ops/ms
+TestContainsInt.containsExisting       ECLIPSE_ARRAY_LIST     100  thrpt   40  10698.652 ±  31.692  ops/ms
+TestContainsInt.containsExisting         ECLIPSE_HASH_SET     100  thrpt   40  19143.624 ± 205.866  ops/ms
+TestContainsInt.containsExisting         ECLIPSE_HASH_MAP     100  thrpt   40   4557.939 ±  19.972  ops/ms
+TestContainsInt.containsExisting      FASTUTIL_ARRAY_LIST     100  thrpt   40  10691.493 ±  28.409  ops/ms
+TestContainsInt.containsExisting        FASTUTIL_HASH_SET     100  thrpt   40  19647.804 ±  45.737  ops/ms
+TestContainsInt.containsExisting        FASTUTIL_TREE_SET     100  thrpt   40  10361.070 ±  19.158  ops/ms
+TestContainsInt.containsExisting        FASTUTIL_HASH_MAP     100  thrpt   40  19699.594 ±  76.046  ops/ms
