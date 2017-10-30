@@ -4,6 +4,7 @@ import com.benchmarks.repos.int_repos.IntInMemoryRepository;
 import com.benchmarks.repos.int_repos.eclipse_collections.*;
 import com.benchmarks.repos.int_repos.fastutil_collections.*;
 import com.benchmarks.repos.int_repos.jdk_collections.*;
+import com.benchmarks.repos.int_repos.koloboke_collections.KolobokeHashSetRepository;
 
 import java.util.function.Supplier;
 
@@ -85,6 +86,13 @@ public enum IntRepositorySupplier implements Supplier<IntInMemoryRepository> {
         @Override
         public IntInMemoryRepository get() {
             return new FastutilHashMapRepository();
+        }
+    },
+
+    KOLOBOKE_HASH_SET(){
+        @Override
+        public IntInMemoryRepository get() {
+            return new KolobokeHashSetRepository();
         }
     }
 }

@@ -51,3 +51,11 @@ TestRemoveInt.removeExisting      FASTUTIL_ARRAY_LIST     100  thrpt   40  20075
 TestRemoveInt.removeExisting        FASTUTIL_HASH_SET     100  thrpt   40  20861.415 ±  26.413  ops/ms
 TestRemoveInt.removeExisting        FASTUTIL_TREE_SET     100  thrpt   40  19162.970 ± 238.568  ops/ms
 TestRemoveInt.removeExisting        FASTUTIL_HASH_MAP     100  thrpt   40  20557.844 ± 311.389  ops/ms
+
+
+# Run complete. Total time: 00:03:10
+
+Benchmark                     (intRepositorySupplier)  (size)   Mode  Cnt      Score     Error   Units
+TestRemoveInt.removeAfter           KOLOBOKE_HASH_SET     100  thrpt   40  19897.380 ±  57.823  ops/ms
+TestRemoveInt.removeBefore          KOLOBOKE_HASH_SET     100  thrpt   40  17224.390 ±  64.090  ops/ms
+TestRemoveInt.removeExisting        KOLOBOKE_HASH_SET     100  thrpt   40  20252.917 ± 154.299  ops/ms

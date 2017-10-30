@@ -49,3 +49,11 @@ TestAddInt.addExisting      FASTUTIL_ARRAY_LIST     100  thrpt   40  20634.708 �
 TestAddInt.addExisting        FASTUTIL_HASH_SET     100  thrpt   40  20093.515 ±   78.645  ops/ms
 TestAddInt.addExisting        FASTUTIL_TREE_SET     100  thrpt   40  12117.784 ±   47.582  ops/ms
 TestAddInt.addExisting        FASTUTIL_HASH_MAP     100  thrpt   40  18419.292 ±   84.174  ops/ms
+
+
+# Run complete. Total time: 00:03:09
+
+Benchmark               (intRepositorySupplier)  (size)   Mode  Cnt      Score     Error   Units
+TestAddInt.addAfter           KOLOBOKE_HASH_SET     100  thrpt   40  19194.335 ±  47.801  ops/ms
+TestAddInt.addBefore          KOLOBOKE_HASH_SET     100  thrpt   40  15831.905 ±  18.835  ops/ms
+TestAddInt.addExisting        KOLOBOKE_HASH_SET     100  thrpt   40  19559.443 ± 180.713  ops/ms
