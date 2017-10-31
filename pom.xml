@@ -89,6 +89,7 @@
 		<module>day2</module>
 		<module>report</module>
         <module>repositories</module>
+        <module>big_decimals</module>
         <!-- add here any other modules -->
 	</modules>
 
