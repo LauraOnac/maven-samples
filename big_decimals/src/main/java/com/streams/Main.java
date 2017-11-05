@@ -12,9 +12,10 @@ public class Main {
         Sum sum = new Sum();
         Average average = new Average();
         Top10 top10 = new Top10();
+        BigDecimalSerializer serializer = new BigDecimalSerializer("big_decimals/src/main/java/resources/big_decimals.txt");
 
         List<BigDecimal> list = new ArrayList<>();
-        for(int i = 0; i < 1000; i+=1){
+        for(int i = 0; i < 1000; i++){
             list.add(new BigDecimal(i));
         }
 
@@ -28,5 +29,13 @@ public class Main {
         for(BigDecimal number: top10Result){
             System.out.print(number + "  ");
         }
+
+        System.out.println("\nSerializing and Deserializing BigDecimals:");
+        serializer.serializeBigDecimals(list);
+        List<BigDecimal> numbers = serializer.deserializeBigDecimals();
+        for(BigDecimal number: numbers){
+            System.out.print(number + ", ");
+        }
+        System.out.println();
     }
 }
