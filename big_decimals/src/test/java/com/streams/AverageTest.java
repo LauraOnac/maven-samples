@@ -17,29 +17,149 @@ import static org.junit.Assert.*;
  */
 public class AverageTest {
     private Average average;
-    private List<BigDecimal> list1000;
+    private List<BigDecimal> list;
 
     @Before
     public void setUp(){
         average = new Average();
-        list1000 = new ArrayList<>();
-        for(int i = 0; i < 1000; i++){
-            list1000.add(new BigDecimal(i));
-        }
+        list = new ArrayList<>();
     }
 
     @Test
-    public void test_compute(){
-        BigDecimal averageResult = average.compute(list1000);
+    public void testComputeAverage1000(){
+        for(int i = 0; i < 1000; i++){
+            list.add(new BigDecimal(i));
+        }
+        BigDecimal averageResult = average.compute(list);
         BigDecimal averageExpected = new BigDecimal(500);
         assertThat(averageResult, is(equalTo(averageExpected)));
+        list.clear();
     }
 
     @Test
-    public void test_compute_double(){
-        OptionalDouble averageResult = average.computeDouble(list1000);
+    public void testComputeAverage10000(){
+        for(int i = 0; i < 10000; i++){
+            list.add(new BigDecimal(i));
+        }
+        BigDecimal averageResult = average.compute(list);
+        BigDecimal averageExpected = new BigDecimal(5000);
+        assertThat(averageResult, is(equalTo(averageExpected)));
+        list.clear();
+    }
+
+    @Test
+    public void testComputeAverage100000(){
+        for(int i = 0; i < 100000; i++){
+            list.add(new BigDecimal(i));
+        }
+        BigDecimal averageResult = average.compute(list);
+        BigDecimal averageExpected = new BigDecimal(50000);
+        assertThat(averageResult, is(equalTo(averageExpected)));
+        list.clear();
+    }
+
+    @Test
+    public void testComputeAverage1000000(){
+        for(int i = 0; i < 1000000; i++){
+            list.add(new BigDecimal(i));
+        }
+        BigDecimal averageResult = average.compute(list);
+        BigDecimal averageExpected = new BigDecimal(500000);
+        assertThat(averageResult, is(equalTo(averageExpected)));
+        list.clear();
+    }
+
+    @Test
+    public void testComputeAverage10000000(){
+        for(int i = 0; i < 10000000; i++){
+            list.add(new BigDecimal(i));
+        }
+        BigDecimal averageResult = average.compute(list);
+        BigDecimal averageExpected = new BigDecimal(5000000);
+        assertThat(averageResult, is(equalTo(averageExpected)));
+        list.clear();
+    }
+
+//    @Test
+//    public void testComputeAverage100000000(){
+//        for(int i = 0; i < 100000000; i++){
+//            list.add(new BigDecimal(i));
+//        }
+//        BigDecimal averageResult = average.compute(list);
+//        BigDecimal averageExpected = new BigDecimal(50000000);
+//        assertThat(averageResult, is(equalTo(averageExpected)));
+//        list.clear();
+//    }
+
+    @Test
+    public void testComputeAverageUsingDouble1000(){
+        for(int i = 0; i < 1000; i++){
+            list.add(new BigDecimal(i));
+        }
+        OptionalDouble averageResult = average.computeDouble(list);
         double averageExpected = 499.5;
         if(averageResult.isPresent())
             assertThat(averageResult.getAsDouble(), is(equalTo(averageExpected)));
+        list.clear();
     }
+
+    @Test
+    public void testComputeAverageUsingDouble10000(){
+        for(int i = 0; i < 10000; i++){
+            list.add(new BigDecimal(i));
+        }
+        OptionalDouble averageResult = average.computeDouble(list);
+        double averageExpected = 4999.5;
+        if(averageResult.isPresent())
+            assertThat(averageResult.getAsDouble(), is(equalTo(averageExpected)));
+        list.clear();
+    }
+
+    @Test
+    public void testComputeAverageUsingDouble100000(){
+        for(int i = 0; i < 100000; i++){
+            list.add(new BigDecimal(i));
+        }
+        OptionalDouble averageResult = average.computeDouble(list);
+        double averageExpected = 49999.5;
+        if(averageResult.isPresent())
+            assertThat(averageResult.getAsDouble(), is(equalTo(averageExpected)));
+        list.clear();
+    }
+
+    @Test
+    public void testComputeAverageUsingDouble1000000(){
+        for(int i = 0; i < 1000000; i++){
+            list.add(new BigDecimal(i));
+        }
+        OptionalDouble averageResult = average.computeDouble(list);
+        double averageExpected = 499999.5;
+        if(averageResult.isPresent())
+            assertThat(averageResult.getAsDouble(), is(equalTo(averageExpected)));
+        list.clear();
+    }
+
+    @Test
+    public void testComputeAverageUsingDouble10000000(){
+        for(int i = 0; i < 10000000; i++){
+            list.add(new BigDecimal(i));
+        }
+        OptionalDouble averageResult = average.computeDouble(list);
+        double averageExpected = 4999999.5;
+        if(averageResult.isPresent())
+            assertThat(averageResult.getAsDouble(), is(equalTo(averageExpected)));
+        list.clear();
+    }
+
+//    @Test
+//    public void testComputeAverageUsingDouble100000000(){
+//        for(int i = 0; i < 100000000; i++){
+//            list.add(new BigDecimal(i));
+//        }
+//        OptionalDouble averageResult = average.computeDouble(list);
+//        double averageExpected = 49999999.5;
+//        if(averageResult.isPresent())
+//            assertThat(averageResult.getAsDouble(), is(equalTo(averageExpected)));
+//        list.clear();
+//    }
 }

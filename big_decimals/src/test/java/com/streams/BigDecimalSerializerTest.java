@@ -16,24 +16,89 @@ import static org.hamcrest.CoreMatchers.is;
  */
 public class BigDecimalSerializerTest {
     private BigDecimalSerializer serializer;
-    private List<BigDecimal> list1000;
+    private List<BigDecimal> list;
 
     @Before
     public void setUp(){
         serializer = new BigDecimalSerializer("src/test/java/resources/big_decimals.txt");
-        list1000 = new ArrayList<>();
-        for(int i = 0; i < 1000; i++){
-            list1000.add(new BigDecimal(i));
-        }
+        list = new ArrayList<>();
     }
 
     @Test
-    public void test_serialize_deserialize(){
-        serializer.serializeBigDecimals(list1000);
-        List<BigDecimal> numbers = serializer.deserializeBigDecimals();
-        for(int index = 0; index < list1000.size(); index++){
-            assertThat(list1000.get(index), is(equalTo(numbers.get(index))));
+    public void testSerializeAndDeserialize1000(){
+        for(int i = 0; i < 1000; i++){
+            list.add(new BigDecimal(i));
         }
+        serializer.serializeBigDecimals(list);
+        List<BigDecimal> numbers = serializer.deserializeBigDecimals();
+        for(int index = 0; index < list.size(); index++){
+            assertThat(list.get(index), is(equalTo(numbers.get(index))));
+        }
+        list.clear();
     }
 
+    @Test
+    public void testSerializeAndDeserialize10000(){
+        for(int i = 0; i < 10000; i++){
+            list.add(new BigDecimal(i));
+        }
+        serializer.serializeBigDecimals(list);
+        List<BigDecimal> numbers = serializer.deserializeBigDecimals();
+        for(int index = 0; index < list.size(); index++){
+            assertThat(list.get(index), is(equalTo(numbers.get(index))));
+        }
+        list.clear();
+    }
+
+    @Test
+    public void testSerializeAndDeserialize100000(){
+        for(int i = 0; i < 100000; i++){
+            list.add(new BigDecimal(i));
+        }
+        serializer.serializeBigDecimals(list);
+        List<BigDecimal> numbers = serializer.deserializeBigDecimals();
+        for(int index = 0; index < list.size(); index++){
+            assertThat(list.get(index), is(equalTo(numbers.get(index))));
+        }
+        list.clear();
+    }
+
+    @Test
+    public void testSerializeAndDeserialize1000000(){
+        for(int i = 0; i < 1000000; i++){
+            list.add(new BigDecimal(i));
+        }
+        serializer.serializeBigDecimals(list);
+        List<BigDecimal> numbers = serializer.deserializeBigDecimals();
+        for(int index = 0; index < list.size(); index++){
+            assertThat(list.get(index), is(equalTo(numbers.get(index))));
+        }
+        list.clear();
+    }
+
+//    @Test
+//    public void testSerializeAndDeserialize10000000(){
+//        for(int i = 0; i < 10000000; i++){
+//            list.add(new BigDecimal(i));
+//        }
+//        serializer.serializeBigDecimals(list);
+//        List<BigDecimal> numbers = serializer.deserializeBigDecimals();
+//        for(int index = 0; index < list.size(); index++){
+//            assertThat(list.get(index), is(equalTo(numbers.get(index))));
+//        }
+//        list.clear();
+//    }
+//
+//    @Test
+//    public void testSerializeAndDeserialize100000000(){
+//        for(int i = 0; i < 100000000; i++){
+//            list.add(new BigDecimal(i));
+//        }
+//        serializer.serializeBigDecimals(list);
+//        List<BigDecimal> numbers = serializer.deserializeBigDecimals();
+//        for(int index = 0; index < list.size(); index++){
+//            assertThat(list.get(index), is(equalTo(numbers.get(index))));
+//        }
+//        list.clear();
+//    }
 }

@@ -16,21 +16,76 @@ import static org.hamcrest.CoreMatchers.equalTo;
  */
 public class SumTest {
     private Sum sum;
-    private List<BigDecimal> list1000;
-
+    private List<BigDecimal> list;
     @Before
     public void setUp(){
         sum = new Sum();
-        list1000 = new ArrayList<>();
-        for(int i = 0; i < 1000; i++){
-            list1000.add(new BigDecimal(i));
-        }
+        list = new ArrayList<>();
     }
 
     @Test
-    public void test_compute(){
-        BigDecimal sumResult = sum.compute(list1000);
+    public void testComputeSum1000(){
+        for(int i = 0; i < 1000; i++){
+            list.add(new BigDecimal(i));
+        }
+        BigDecimal sumResult = sum.compute(list);
         BigDecimal sumExpected = new BigDecimal(499500);
         assertThat(sumResult, is(equalTo(sumExpected)));
+        list.clear();
     }
+
+    @Test
+    public void testComputeSum10000(){
+        for(int i = 0; i < 10000; i++){
+            list.add(new BigDecimal(i));
+        }
+        BigDecimal sumResult = sum.compute(list);
+        BigDecimal sumExpected = new BigDecimal(49995000);
+        assertThat(sumResult, is(equalTo(sumExpected)));
+        list.clear();
+    }
+
+    @Test
+    public void testComputeSum100000(){
+        for(int i = 0; i < 100000; i++){
+            list.add(new BigDecimal(i));
+        }
+        BigDecimal sumResult = sum.compute(list);
+        BigDecimal sumExpected = new BigDecimal(4999950000l);
+        assertThat(sumResult, is(equalTo(sumExpected)));
+        list.clear();
+    }
+
+    @Test
+    public void testComputeSum1000000(){
+        for(int i = 0; i < 1000000; i++){
+            list.add(new BigDecimal(i));
+        }
+        BigDecimal sumResult = sum.compute(list);
+        BigDecimal sumExpected = new BigDecimal(499999500000l);
+        assertThat(sumResult, is(equalTo(sumExpected)));
+        list.clear();
+    }
+
+    @Test
+    public void testComputeSum10000000(){
+        for(int i = 0; i < 10000000; i++){
+            list.add(new BigDecimal(i));
+        }
+        BigDecimal sumResult = sum.compute(list);
+        BigDecimal sumExpected = new BigDecimal(49999995000000l);
+        assertThat(sumResult, is(equalTo(sumExpected)));
+        list.clear();
+    }
+
+//    @Test
+//    public void testComputeSum100000000(){
+//        for(int i = 0; i < 100000000; i++){
+//            list.add(new BigDecimal(i));
+//        }
+//        BigDecimal sumResult = sum.compute(list);
+//        BigDecimal sumExpected = new BigDecimal(4999999950000000l);
+//        assertThat(sumResult, is(equalTo(sumExpected)));
+//        list.clear();
+//    }
 }
