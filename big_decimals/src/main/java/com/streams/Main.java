@@ -1,8 +1,12 @@
 package com.streams;
 
+import javafx.util.converter.BigDecimalStringConverter;
+
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiFunction;
 
 /**
  * Created by Laura on 10/31/2017.
@@ -12,7 +16,8 @@ public class Main {
         Sum sum = new Sum();
         Average average = new Average();
         Top10 top10 = new Top10();
-        BigDecimalSerializer serializer = new BigDecimalSerializer("big_decimals/src/main/java/resources/big_decimals.txt");
+        BigDecimalSerializer bigDecimalSerializer = new BigDecimalSerializer("big_decimals/src/main/java/resources/big_decimals.txt");
+        LambdaSerializer lambdaSerializer = new LambdaSerializer("big_decimals/src/main/java/resources/lambda.txt");
 
         List<BigDecimal> list = new ArrayList<>();
         for(int i = 0; i < 1000; i++){
@@ -31,11 +36,21 @@ public class Main {
         }
 
         System.out.println("\nSerializing and Deserializing BigDecimals:");
-        serializer.serializeBigDecimals(list);
-        List<BigDecimal> numbers = serializer.deserializeBigDecimals();
+        bigDecimalSerializer.serializeBigDecimals(list);
+        List<BigDecimal> numbers = bigDecimalSerializer.deserializeBigDecimals();
         for(BigDecimal number: numbers){
             System.out.print(number + ", ");
         }
         System.out.println();
+
+        System.out.println("\nSerializing and Deserializing Lambda:");
+        BiFunction<BigDecimal,BigDecimal,BigDecimal> lambda = (BiFunction<BigDecimal,BigDecimal,BigDecimal> & Serializable)(number1,number2) -> number1.add(number2);
+        lambdaSerializer.serializeLambda(lambda);
+        BiFunction<BigDecimal,BigDecimal,BigDecimal> deserializedLambda = lambdaSerializer.deserializeLambda();
+        BigDecimal n1 = new BigDecimal(1);
+        BigDecimal n2 = new BigDecimal(1);
+        BigDecimal r = deserializedLambda.apply(n1,n2);
+        System.out.println("Sum");
+        System.out.println("1 + 1 = " + r);
     }
 }

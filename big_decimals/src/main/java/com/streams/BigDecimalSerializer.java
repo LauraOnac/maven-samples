@@ -16,16 +16,13 @@ public class BigDecimalSerializer {
     }
 
     public void serializeBigDecimals(List<BigDecimal> numbers){
-        ObjectOutputStream out;
-        try {
-            out = new ObjectOutputStream(new BufferedOutputStream(
-                    new FileOutputStream(filename)));
+
+        try(ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filename)))) {
 
             for(BigDecimal number: numbers){
                 out.writeObject(number);
             }
 
-            out.close();
         }catch(IOException e) {
             e.printStackTrace();
         }
@@ -33,21 +30,18 @@ public class BigDecimalSerializer {
 
     public List<BigDecimal> deserializeBigDecimals(){
         List<BigDecimal> numbers = new ArrayList<>();
-        ObjectInputStream in;
-        try {
-            in = new ObjectInputStream(new BufferedInputStream(
-                    new FileInputStream(filename)));
+        try(ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(filename)))) {
 
             try {
                 while (true) {
                     numbers.add((BigDecimal) in.readObject());
                 }
             }catch (EOFException e) {
-
+                System.out.println("End of file.");
             }catch (ClassNotFoundException e){
                 e.printStackTrace();
             }
-            in.close();
+            
         }catch (IOException e){
             e.printStackTrace();
         }

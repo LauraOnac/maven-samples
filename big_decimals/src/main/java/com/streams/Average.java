@@ -10,7 +10,7 @@ import java.util.OptionalDouble;
 public class Average {
     public BigDecimal compute(List<BigDecimal> list){
         BigDecimal sum = list.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
-        BigDecimal count = new BigDecimal(list.stream().count());
+        BigDecimal count = new BigDecimal((long) list.size());
         return sum.divide(count, BigDecimal.ROUND_HALF_UP);
     }
 
