@@ -8,11 +8,12 @@ import java.util.stream.Collectors;
 /**
  * Created by Laura on 10/31/2017.
  */
-public class Top10 {
+public class Top10Percent {
     public List<BigDecimal> compute(List<BigDecimal> list){
+        long top = (new Double(0.1 * list.size())).longValue();
         return list.stream()
                 .sorted(Comparator.reverseOrder())
-                .limit(10)
+                .limit(top)
                 .collect(Collectors.toList());
     }
 }

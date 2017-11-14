@@ -13,7 +13,7 @@ public class Main {
     public static void main(String [ ] args){
         Sum sum = new Sum();
         Average average = new Average();
-        Top10 top10 = new Top10();
+        Top10Percent top10Percent = new Top10Percent();
         BigDecimalSerializer bigDecimalSerializer = new BigDecimalSerializer("big_decimals/src/main/java/resources/big_decimals.txt");
         LambdaSerializer lambdaSerializer = new LambdaSerializer("big_decimals/src/main/java/resources/lambda.txt");
 
@@ -24,11 +24,11 @@ public class Main {
 
         BigDecimal sumResult = sum.compute(list);
         BigDecimal averageResult = average.compute(list);
-        List<BigDecimal> top10Result = top10.compute(list);
+        List<BigDecimal> top10Result = top10Percent.compute(list);
 
         System.out.println("Sum: " + sumResult);
         System.out.println("Average: " + averageResult);
-        System.out.print("Top10: ");
+        System.out.print("Top10Percent: ");
         for(BigDecimal number: top10Result){
             System.out.print(number + "  ");
         }

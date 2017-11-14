@@ -19,6 +19,7 @@ public class BigDecimalSerializer {
 
         try(ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filename)))) {
 
+            out.writeObject(numbers.size());
             for(BigDecimal number: numbers){
                 out.writeObject(number);
             }
@@ -33,11 +34,11 @@ public class BigDecimalSerializer {
         try(ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(filename)))) {
 
             try {
-                while (true) {
+                Integer size = (Integer) in.readObject();
+                while (size > 0) {
                     numbers.add((BigDecimal) in.readObject());
+                    size -= 1;
                 }
-            }catch (EOFException e) {
-                System.out.println("End of file.");
             }catch (ClassNotFoundException e){
                 e.printStackTrace();
             }
