@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Laura on 11/14/2017.
@@ -26,7 +27,7 @@ public class Producer extends Thread {
                 String nextPerson = scanner.next();
                 if (Util.isValid(nextPerson)) {
                     Person person = Util.createPerson(nextPerson);
-                    queue.put(person);
+                    queue.offer(person, 5000, TimeUnit.MILLISECONDS);
                 }
             }
             System.out.println("Total in Producer: " + total);

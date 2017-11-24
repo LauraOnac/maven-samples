@@ -22,11 +22,11 @@ public class Consumer extends Thread {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("producer_consumer/src/main/resources/consumer_output.txt", true))){
 
             int valid = 0;
-            Person person = queue.poll(1000, TimeUnit.MILLISECONDS);
+            Person person = queue.poll(5000, TimeUnit.MILLISECONDS);
             while(person != null) {
                 valid += 1;
                 bufferedWriter.write(person.toString());
-                person = queue.poll(1000, TimeUnit.MILLISECONDS);
+                person = queue.poll(5000, TimeUnit.MILLISECONDS);
             }
             System.out.println("Valid in Consumer: " + valid);
 
