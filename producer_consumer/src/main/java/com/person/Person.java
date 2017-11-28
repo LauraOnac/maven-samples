@@ -50,4 +50,28 @@ public class Person {
                 CNP + "~" +
                 email;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Person)) return false;
+
+        Person person = (Person) o;
+
+        if (!name1.equals(person.name1)) return false;
+        if (!name2.equals(person.name2)) return false;
+        if (!name3.equals(person.name3)) return false;
+        if (!CNP.equals(person.CNP)) return false;
+        return email.equals(person.email);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name1.hashCode();
+        result = 31 * result + name2.hashCode();
+        result = 31 * result + name3.hashCode();
+        result = 31 * result + CNP.hashCode();
+        result = 31 * result + email.hashCode();
+        return result;
+    }
 }

@@ -4,7 +4,6 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Laura on 11/14/2017.
@@ -22,11 +21,12 @@ public class Consumer extends Thread {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("producer_consumer/src/main/resources/consumer_output.txt", true))){
 
             int valid = 0;
-            Person person = queue.poll(5000, TimeUnit.MILLISECONDS);
-            while(person != null) {
+            Person poisonPill = new Person("","","",0l,"");
+            Person person = queue.take();
+            while(!person.equals(poisonPill)) {
                 valid += 1;
                 bufferedWriter.write(person.toString());
-                person = queue.poll(5000, TimeUnit.MILLISECONDS);
+                person = queue.take();
             }
             System.out.println("Valid in Consumer: " + valid);
 
