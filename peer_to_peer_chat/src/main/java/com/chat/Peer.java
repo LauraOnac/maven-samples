@@ -51,6 +51,7 @@ public class Peer{
             }
         }).start();
 
+        /*
         new Thread( () -> {
             String host = "localhost";
             int portNumber = 50538;
@@ -80,5 +81,6 @@ public class Peer{
                 e.printStackTrace();
             }
         }).start();
+        */
     }
 }
