@@ -1,6 +1,5 @@
 package com.chat;
 
-import java.net.*;
 import java.io.*;
 import java.awt.*;
 
@@ -9,16 +8,22 @@ import java.awt.*;
  */
 public class ChatWindow extends Frame implements Runnable{
 
-    protected DataInputStream i;
-    protected DataOutputStream o;
-    protected TextArea output;
-    protected TextField input;
-    protected Thread listener;
+    private String from;
+    private String to;
+    private DataInputStream inputStream;
+    private DataOutputStream outputStream;
+    private TextArea output;
+    private TextField input;
+    private Thread listener;
+    private volatile boolean stop;
 
-    public ChatWindow (String title, InputStream i, OutputStream o) {
+    public ChatWindow (String title, String from, String to, InputStream inputStream, OutputStream outputStream) {
         super (title);
-        this.i = new DataInputStream (new BufferedInputStream (i));
-        this.o = new DataOutputStream (new BufferedOutputStream (o));
+        this.from = from;
+        this.to = to;
+        this.inputStream = new DataInputStream (new BufferedInputStream (inputStream));
+        this.outputStream = new DataOutputStream (new BufferedOutputStream (outputStream));
+        this.stop = false;
         setLayout (new BorderLayout ());
         add ("Center", output = new TextArea ());
         output.setEditable (false);
@@ -27,15 +32,15 @@ public class ChatWindow extends Frame implements Runnable{
         show ();
         input.requestFocus ();
         listener = new Thread (this);
-        listener.start ();
+        listener.start();
     }
 
     @Override
     public void run () {
         try {
-            while (true) {
-                String line = i.readUTF ();
-                output.appendText ("Peer: " + line + "\n");
+            while (!stop) {
+                String line = inputStream.readUTF ();
+                output.appendText (to + ": " + line + "\n");
             }
         } catch (IOException ex) {
             ex.printStackTrace ();
@@ -44,7 +49,7 @@ public class ChatWindow extends Frame implements Runnable{
             input.hide ();
             validate ();
             try {
-                o.close ();
+                outputStream.close ();
             } catch (IOException ex) {
                 ex.printStackTrace ();
             }
@@ -55,14 +60,14 @@ public class ChatWindow extends Frame implements Runnable{
     public boolean handleEvent (Event e) {
         if ((e.target == input) && (e.id == Event.ACTION_EVENT)) {
             try {
-                output.appendText("Me: " + e.arg + "\n");
-                o.writeUTF ((String) e.arg);
-                o.flush ();
+                output.appendText(from + ": " + e.arg + "\n");
+                outputStream.writeUTF ((String) e.arg);
+                outputStream.flush ();
+                input.setText("");
             } catch (IOException ex) {
                 ex.printStackTrace();
                 listener.stop ();
             }
-            input.setText ("");
             return true;
         } else if ((e.target == this) && (e.id == Event.WINDOW_DESTROY)) {
             if (listener != null)
@@ -73,9 +78,7 @@ public class ChatWindow extends Frame implements Runnable{
         return super.handleEvent (e);
     }
 
-    public static void main (String args[]) throws IOException {
-        Socket s = new Socket ("localhost", 52320);
-        new ChatWindow ("Chat",
-                s.getInputStream (), s.getOutputStream ());
+    public void stop(){
+        stop = true;
     }
 }
