@@ -14,7 +14,7 @@ public class ChatWindow extends Frame implements Runnable {
     private DataOutputStream outputStream;
     private TextArea output;
     private TextField input;
-    private volatile boolean stop;
+    private static volatile boolean stop;
 
     public ChatWindow(String title, String from, String to, InputStream inputStream, OutputStream outputStream) {
         super(title);
@@ -22,7 +22,7 @@ public class ChatWindow extends Frame implements Runnable {
         this.to = to;
         this.inputStream = new DataInputStream(new BufferedInputStream(inputStream));
         this.outputStream = new DataOutputStream(new BufferedOutputStream(outputStream));
-        this.stop = false;
+        stop = false;
         setLayout(new BorderLayout());
         add("Center", output = new TextArea());
         output.setEditable(false);
@@ -38,6 +38,14 @@ public class ChatWindow extends Frame implements Runnable {
             while (!stop) {
                 String line = inputStream.readUTF();
                 output.appendText(to + ": " + line + "\n");
+            }
+        } catch (EOFException e){
+            input.hide();
+            validate();
+            try {
+                outputStream.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
             }
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -57,12 +65,15 @@ public class ChatWindow extends Frame implements Runnable {
         if ((e.target == input) && (e.id == Event.ACTION_EVENT)) {
             try {
                 output.appendText(from + ": " + e.arg + "\n");
-                outputStream.writeUTF((String) e.arg);
+                String message = ConnectionManager.processInput(from, to, (String) e.arg);
+                outputStream.writeUTF(message);
                 outputStream.flush();
-                input.setText("");
+            } catch (ChatException ex){
+                output.appendText(ex.getMessage() + "\n");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
+            input.setText(" ");
             return true;
         } else if ((e.target == this) && (e.id == Event.WINDOW_DESTROY)) {
             stop = true;

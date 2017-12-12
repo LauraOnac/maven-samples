@@ -3,6 +3,9 @@ package com.chat;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -11,6 +14,7 @@ import java.util.concurrent.Executors;
  */
 public class ConnectionManager {
 
+    private static List<Connection> connections = new ArrayList<>();
     private Executor executor;
     private String host;
 
@@ -25,17 +29,34 @@ public class ConnectionManager {
 
     public void connect(Peer peer1, Peer peer2) {
         try {
-            Socket newSocket = new Socket(host, peer1.getPort());
+            Socket newSocket = new Socket(host, peer2.getPort());
 
             PrintWriter out = new PrintWriter(newSocket.getOutputStream(), true);
-            out.println(peer2.getName());
+            out.println(peer1.getName());
 
-            ChatWindow chatWindow = new ChatWindow(peer2.getName() + " to " + peer1.getName(),
-                    peer2.getName(), peer1.getName(), newSocket.getInputStream(), newSocket.getOutputStream());
+            ChatWindow chatWindow = new ChatWindow(peer1.getName() + " to " + peer2.getName(),
+                    peer1.getName(), peer2.getName(), newSocket.getInputStream(), newSocket.getOutputStream());
 
-            peer2.addChat(chatWindow);
+            peer1.addChat(chatWindow);
+
+            Connection connection = new Connection(peer1, peer2);
+            connections.add(connection);
+
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static String processInput(String from, String to, String input){
+        Optional<Connection> connection = connections.stream()
+                .filter(c -> c.getInitiator().getName().equals(from) && c.getTarget().getName().equals(to) ||
+                             c.getInitiator().getName().equals(to) && c.getTarget().getName().equals(from))
+                .findAny();
+        if (connection.isPresent()){
+            return connection.get().getProtocol().processInput(input, from);
+        }
+        else{
+            throw new ChatException("There is no connection for " + from + "!");
         }
     }
 }

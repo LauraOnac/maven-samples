@@ -46,6 +46,7 @@ public class Peer implements Runnable {
                         newSocket.getInputStream(), newSocket.getOutputStream());
                 addChat(chatWindow);
             }
+            socket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

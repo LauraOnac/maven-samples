@@ -18,6 +18,6 @@ public class Main {
         connectionManager.addPeer(peer3);
 
         connectionManager.connect(peer1, peer2);
-        connectionManager.connect(peer3, peer1);
+        //connectionManager.connect(peer3, peer1);
     }
 }
