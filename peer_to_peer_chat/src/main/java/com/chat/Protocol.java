@@ -5,32 +5,32 @@ package com.chat;
  */
 public class Protocol {
 
-    private enum State {UNINITIALIZED, INITIALIZED, ACKNOWLEDGED, TERMINATED}
     private State state;
     private String initiator;
     private String target;
 
-    public Protocol(String initiator, String target){
+    public Protocol(String initiator, String target) {
         this.state = State.UNINITIALIZED;
         this.initiator = initiator;
         this.target = target;
     }
 
-    public String processInput(String input, String me){
+    public String processInput(String input, String me) {
         if (me.equals(initiator) && input.equals("!hello " + this.target) && this.state.equals(State.UNINITIALIZED)) {
             this.state = State.INITIALIZED;
-        }
-        else if (me.equals(target) && input.equals("!ack") && this.state.equals(State.INITIALIZED)) {
-            System.out.println("Here");
+        } else if (me.equals(target) && input.equals("!ack") && this.state.equals(State.INITIALIZED)) {
             this.state = State.ACKNOWLEDGED;
-        }
-        else if (input.equals("!bye") && this.state.equals(State.ACKNOWLEDGED)) {
+        } else if (input.equals("!bye") && this.state.equals(State.ACKNOWLEDGED)) {
             this.state = State.TERMINATED;
-        }
-        else if (!this.state.equals(State.ACKNOWLEDGED)){
-            throw new ChatException("The protocol was broken!");
+        } else if (input.equals("!byebye") && this.state.equals(State.ACKNOWLEDGED)) {
+            this.state = State.TERMINATED_ALL;
+        } else if (!this.state.equals(State.ACKNOWLEDGED)) {
+            this.state = State.BROKEN;
         }
         return input;
     }
 
+    public State getState() {
+        return state;
+    }
 }

@@ -2,6 +2,7 @@ package com.chat;
 
 import java.io.*;
 import java.awt.*;
+import java.net.Socket;
 
 /**
  * Created by Laura on 12/11/2017.
@@ -10,18 +11,24 @@ public class ChatWindow extends Frame implements Runnable {
 
     private String from;
     private String to;
+    private Socket socket;
     private DataInputStream inputStream;
     private DataOutputStream outputStream;
     private TextArea output;
     private TextField input;
-    private static volatile boolean stop;
+    private boolean stop;
 
-    public ChatWindow(String title, String from, String to, InputStream inputStream, OutputStream outputStream) {
+    public ChatWindow(String title, String from, String to, Socket socket) {
         super(title);
         this.from = from;
         this.to = to;
-        this.inputStream = new DataInputStream(new BufferedInputStream(inputStream));
-        this.outputStream = new DataOutputStream(new BufferedOutputStream(outputStream));
+        this.socket = socket;
+        try {
+            this.inputStream = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+            this.outputStream = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
         stop = false;
         setLayout(new BorderLayout());
         add("Center", output = new TextArea());
@@ -39,21 +46,14 @@ public class ChatWindow extends Frame implements Runnable {
                 String line = inputStream.readUTF();
                 output.appendText(to + ": " + line + "\n");
             }
-        } catch (EOFException e){
-            input.hide();
-            validate();
-            try {
-                outputStream.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
         } catch (IOException ex) {
-            ex.printStackTrace();
+            /*Peer closed the socket*/
         } finally {
+            output.appendText("Connection closed\n");
             input.hide();
             validate();
             try {
-                outputStream.close();
+                socket.close();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -68,18 +68,31 @@ public class ChatWindow extends Frame implements Runnable {
                 String message = ConnectionManager.processInput(from, to, (String) e.arg);
                 outputStream.writeUTF(message);
                 outputStream.flush();
-            } catch (ChatException ex){
+            } catch (ChatException ex) {
                 output.appendText(ex.getMessage() + "\n");
             } catch (IOException ex) {
-                ex.printStackTrace();
+                /*I closed my socket*/
             }
-            input.setText(" ");
+            input.setText("");
             return true;
         } else if ((e.target == this) && (e.id == Event.WINDOW_DESTROY)) {
-            stop = true;
+            stop();
             hide();
             return true;
         }
         return super.handleEvent(e);
+    }
+
+    public void stop() {
+        stop = true;
+        try {
+            socket.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public String getTo() {
+        return to;
     }
 }
