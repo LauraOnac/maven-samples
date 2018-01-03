@@ -18,11 +18,11 @@ public class Protocol {
     public String processInput(String input, String me) {
         if (me.equals(initiator) && input.equals("!hello " + this.target) && this.state.equals(State.UNINITIALIZED)) {
             this.state = State.INITIALIZED;
-        } else if (me.equals(target) && input.equals("!ack") && this.state.equals(State.INITIALIZED)) {
+        } else if (me.equals(target) && ("!ack").equals(input) && this.state.equals(State.INITIALIZED)) {
             this.state = State.ACKNOWLEDGED;
-        } else if (input.equals("!bye") && this.state.equals(State.ACKNOWLEDGED)) {
+        } else if (("!bye").equals(input) && this.state.equals(State.ACKNOWLEDGED)) {
             this.state = State.TERMINATED;
-        } else if (input.equals("!byebye") && this.state.equals(State.ACKNOWLEDGED)) {
+        } else if (("!byebye").equals(input) && this.state.equals(State.ACKNOWLEDGED)) {
             this.state = State.TERMINATED_ALL;
         } else if (!this.state.equals(State.ACKNOWLEDGED)) {
             this.state = State.BROKEN;
